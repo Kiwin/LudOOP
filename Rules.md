@@ -12,8 +12,8 @@ The slow effect makes a piece move half the normal distance for __x__ amount of 
 #### Spawn Tile
 
 ## Powerups
-##### Rocket
+#### Rocket
 Rockets applies a _stun_ status effect pieces they are used on.
 
-##### Mine
-##### Shield
+#### Mine
+#### Shield
