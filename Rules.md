@@ -2,6 +2,9 @@
 
 ## Rules & Gameplay
 
+## Special Tiles
+##### - Spawn Tile
+
 ## Powerups
 ##### - Rocket
 ##### - Mine
