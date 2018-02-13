@@ -6,8 +6,14 @@ namespace Ludoop
 {
     interface IPosition
     {
-        Vector2D GetPosition();
-
-        void SetPostion(int x, int y);
+        /// <summary>
+        /// Defines the position of the object
+        /// </summary>
+        Vector2D Position
+        {
+            get;
+            set;
+        }
+        
     }
 }
