@@ -1,6 +1,6 @@
 # Rules and Features
 
-## Rules & Gameplay
+## Rules & Gameflow
 
 ## Status Effects
 #### Stun Effect
