@@ -2,7 +2,7 @@
 
 namespace Ludoop
 {
-    public class Piece
+    public class Piece : IMove
     {
         public enum TeamColor { RED, GREEN, YELLOW, BLUE };
 
@@ -33,11 +33,25 @@ namespace Ludoop
                 this.position.X = value.X;
             }
         }
-#endregion
+        #endregion
 
-        public void Move(int numberOfTiles)
+        #region Movement Methods
+
+        public void Move(int tiles)
         {
 
         }
-    }
+
+        public void MoveTo(int tileIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveToMap(int mapIndex, int tileIndex)
+        {
+            throw new NotImplementedException();
+        }
+            #endregion
+
+        }
 }
