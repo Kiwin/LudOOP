@@ -6,7 +6,11 @@ namespace Ludoop
 {
     public class Vector2D
     {
-
+        /// <summary>
+        /// Constructor for Vector2D takes a map index and a tile index to specify position
+        /// </summary>
+        /// <param name="x">Tile Index</param>
+        /// <param name="y">Map Index</param>
         public Vector2D(int x = 0, int y = 0)
         {
             this.X = x;
@@ -15,12 +19,18 @@ namespace Ludoop
 
         private int x, y;
 
+        /// <summary>
+        /// get and set for map index 
+        /// </summary>
         public int X
         {
             get { return x; }
             set { this.x = value; }
         }
         
+        /// <summary>
+        /// get and set for tile index
+        /// </summary>
         public int Y
         {
             get { return y; }
