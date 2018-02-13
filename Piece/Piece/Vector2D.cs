@@ -40,6 +40,10 @@ namespace Ludoop
             set { this.y = value; }
         }
 
+        /// <summary>
+        /// clones the current object
+        /// </summary>
+        /// <returns>returns a Vector2D identical to the original object</returns>
         public Vector2D Clone()
         {
             return new Vector2D(this.X, this.Y);
