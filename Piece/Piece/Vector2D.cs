@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Ludoop
 {
+    /// <summary>
+    /// Class representing a 2D integer-precise vector.
+    /// </summary>
     public class Vector2D
     {
         /// <summary>
