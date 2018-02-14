@@ -4,12 +4,26 @@ using System.Text;
 
 namespace Ludoop
 {
-    class Tile : ITile
+    public abstract class Tile : ITile
     {
         public Tile(int x, int y, TileType type)
         {
             this.Position = new Vector2D(x, y);
             this.Type = type;
+        }
+
+        private Tile previousTile;
+        public Tile PreviousTile
+        {
+            get { return this.previousTile; }
+            set { this.previousTile = value; }
+        }
+
+        private Tile nextTile;
+        public Tile NextTile
+        {
+            get { return this.nextTile; }
+            set { this.nextTile = value; }
         }
 
         private Vector2D position;
