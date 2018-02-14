@@ -9,6 +9,7 @@ namespace Ludoop
         public Tile(int x, int y, TileType type)
         {
             this.Position = new Vector2D(x, y);
+            this.Type = type;
         }
 
         private Vector2D position;

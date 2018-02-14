@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Ludoop.Backend;
+using System;
 
 namespace Ludoop
 {
-    public enum TeamColor { RED, GREEN, YELLOW, BLUE };
     public enum PieceShape { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
 
     public class Piece : IPiece
     {
         #region Constructors
-        public Piece(TeamColor team, PieceShape shape, int x, int y)
+        public Piece(PlayerTeam team, PieceShape shape, int x, int y)
         {
             this.Team = team;
             this.Shape = shape;
@@ -17,13 +17,13 @@ namespace Ludoop
         #endregion
 
         #region Getters and Setters
-        private TeamColor team;
+        private PlayerTeam team;
         private PieceShape shape;
 
         /// <summary>
         /// Getter and Setter for Piece.team
         /// </summary>
-        public TeamColor Team 
+        public PlayerTeam Team 
         {
             get { return this.team;}
             set { this.team = value; }

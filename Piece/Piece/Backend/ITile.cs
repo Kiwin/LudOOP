@@ -11,7 +11,11 @@ namespace Ludoop
     
     interface ITile : IPosition
     {
-        //void OnStep(/*Piece Trigger*/);
+
+        TileType Type {
+            get;
+            set;
+        }
 
         event EventHandler OnStep;
 
