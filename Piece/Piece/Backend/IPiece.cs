@@ -6,9 +6,6 @@ namespace Ludoop
 {
     interface IPiece : IMove
     {
-
-        event EventHandler OnStep;
-
-        event EventHandler OnStepEnd;
+        
     }
 }

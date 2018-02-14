@@ -62,60 +62,69 @@ namespace Ludoop
         /// <summary>
         /// Moves the piece x tiles forward
         /// </summary>
-        /// <param name="tiles">how many tiles to move (forwards or backwards)</param>
-        public void Move(int tiles)
+        /// <param name="steps">how many tiles to move (forwards or backwards)</param>
+        public void Move(int steps)
         {
 
-            for (int i = 0; i <= tiles; i++)
+            if (steps >= 0)
             {
-                TileStep();
-
-                switch (this.Tile.Type)
+                for (int i = 0; i <= steps; i++)
                 {
-                    case TileType.END:
-                        {
-                            break;
-                        }
-                    case TileType.EXIT:
-                        { 
-                            break;
-                        }
-                    case TileType.GLOBE:
-                        {
-                            break;
-                        }
-                    case TileType.SPAWNPOINT:
-                        {
-                            break;
-                        }
-                    case TileType.STAR:
-                        {
-                            break;
-                        }
-                    case TileType.DEFAULT:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            OnTypeNotFound(this.tile.Type, this);
-                            break;
-                        }
+                    TileStep(i == steps - 1, true);
+
+                    switch (this.Tile.Type)
+                    {
+                        case TileType.END:
+                            {
+                                break;
+                            }
+                        case TileType.EXIT:
+                            {
+                                break;
+                            }
+                        case TileType.GLOBE:
+                            {
+                                break;
+                            }
+                        case TileType.SPAWNPOINT:
+                            {
+                                break;
+                            }
+                        case TileType.STAR:
+                            {
+                                break;
+                            }
+                        case TileType.DEFAULT:
+                            {
+                                break;
+                            }
+                        default:
+                            {
+                                OnTypeNotFound(this.tile.Type, this);
+                                break;
+                            }
+                    }
                 }
             }
+
+
         }
 
-        public delegate void OnTypeNotFoundHandler(TileType type, Piece piece);
-        public event OnTypeNotFoundHandler OnTypeNotFound;
 
         /// <summary>
         /// Steps the piece on to the next tile in the array
         /// </summary>
-        private void TileStep()
+        private void TileStep(bool isLastStep, bool isForwards)
         {
-            // TODO: IMPLEMENT OnStep and OnStepEnd events
-
-            this.Tile = this.Tile.NextTile;
+            if (!isLastStep)
+            {
+                OnStep(this, this.Tile, this.Tile.NextTile);
+                this.Tile = this.Tile.NextTile;
+            } else
+            {
+                OnLastStep(this, this.Tile);
+                this.Tile = this.Tile.NextTile;
+            }
         }
 
         /// <summary>
@@ -146,8 +155,14 @@ namespace Ludoop
         }
 
 
-        public event EventHandler OnStep;
-        public event EventHandler OnStepEnd;
+        public delegate void OnTypeNotFoundHandler(TileType type, Piece piece);
+        public event OnTypeNotFoundHandler OnTypeNotFound;
+
+        public delegate void OnStepHandler(Piece piece, Tile currentTile, Tile newTile);
+        public event OnStepHandler OnStep;
+
+        public delegate void OnLastStepHandler(Piece piece, Tile currentTile);
+        public event OnLastStepHandler OnLastStep;
 
     }
 }
