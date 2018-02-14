@@ -24,7 +24,7 @@ namespace Ludoop
         private int x, y;
 
         /// <summary>
-        /// get and set for map index 
+        /// Get and set for map index 
         /// </summary>
         public int X
         {
@@ -42,12 +42,21 @@ namespace Ludoop
         }
 
         /// <summary>
-        /// clones the current object
+        /// Clones the current object
         /// </summary>
-        /// <returns>returns a Vector2D identical to the original object</returns>
+        /// <returns>Returns a Vector2D identical to the original object</returns>
         public Vector2D Clone()
         {
             return new Vector2D(this.X, this.Y);
+        }
+
+        /// <summary>
+        /// Method for checking if two vectors coordinates match.
+        /// </summary>
+        /// <param name="other">Vector to match with.</param>
+        /// <returns>Returns if THIS vector's coordinates matches OTHER vector's coordinates.</returns>
+        public bool Match(Vector2D other) {
+            return this.X == other.X && this.Y == other.Y;
         }
 
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ludoop
 {
-    class Tile : IPosition, ITile
+    class Tile : ITile
     {
         public Tile(int x, int y, TileType type)
         {

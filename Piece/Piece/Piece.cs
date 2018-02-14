@@ -2,38 +2,46 @@
 
 namespace Ludoop
 {
-    public class Piece : IMove, IPosition
-    {
-        public enum TeamColor { RED, GREEN, YELLOW, BLUE };
+    public enum TeamColor { RED, GREEN, YELLOW, BLUE };
+    public enum PieceShape { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
 
+    public class Piece : IPiece
+    {
         #region Constructors
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="team">specifies which team the piece is a part of</param>
-        /// <param name="position">specifies what position the piece is on</param>
-        public Piece(TeamColor team, int x, int y)
+        public Piece(TeamColor team, PieceShape shape, int x, int y)
         {
             this.Team = team;
+            this.Shape = shape;
             this.Position = new Vector2D(x, y);
         }
         #endregion
 
         #region Getters and Setters
         private TeamColor team;
+        private PieceShape shape;
+
         /// <summary>
-        /// get and set, team for object
+        /// Getter and Setter for Piece.team
         /// </summary>
         public TeamColor Team 
         {
             get { return this.team;}
             set { this.team = value; }
         }
-        
+
+        /// <summary>
+        /// Getter and Setter for Piece.shape
+        /// </summary>
+        public PieceShape Shape
+        {
+            get { return this.shape; }
+            set { this.shape = value; }
+        }
+
 
         private Vector2D position;
         /// <summary>
-        /// get and set, position for object
+        /// Getter and Setter for Piece.position
         /// </summary>
         public Vector2D Position
         {
@@ -45,7 +53,7 @@ namespace Ludoop
         #region Movement Methods
 
         /// <summary>
-        /// moves the piece x tiles forward
+        /// Moves the piece x tiles forward
         /// </summary>
         /// <param name="tiles">how many tiles to move (forwards or backwards)</param>
         public void Move(int tiles)
@@ -54,7 +62,7 @@ namespace Ludoop
         }
 
         /// <summary>
-        /// move to specified tile inside same map
+        /// Move to specified tile inside same map
         /// </summary>
         /// <param name="tileIndex">tile index to move to</param>
         public void MoveTo(int tileIndex)
@@ -63,7 +71,7 @@ namespace Ludoop
         }
 
         /// <summary>
-        /// move piece to map and tile in map
+        /// Move piece to map and tile in map
         /// </summary>
         /// <param name="mapIndex">index of map</param>
         /// <param name="tileIndex">index of tile</param>
@@ -71,7 +79,14 @@ namespace Ludoop
         {
             throw new NotImplementedException();
         }
-            #endregion
-
+        #endregion
+        /// <summary>
+        /// Method for getting id of piece.
+        /// </summary>
+        /// <returns>Id of Piece in form of a Vector2D</returns>
+        public Vector2D getId() {
+            return new Vector2D((int)team, (int)shape);
         }
+
+    }
 }

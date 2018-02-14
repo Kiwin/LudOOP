@@ -9,7 +9,7 @@ namespace Ludoop
     /// </summary>
     public enum TileType { DEFAULT, GLOBE, STAR, SPAWNPOINT};
     
-    interface ITile
+    interface ITile : IPosition
     {
         //void OnStep(/*Piece Trigger*/);
 
