@@ -10,7 +10,8 @@ namespace Ludoop
     public class Vector2D
     {
         /// <summary>
-        /// Constructor for Vector2D takes a map index and a tile index to specify position
+        /// Constructor for Vector2D takes a map index and a tile index to specify position,
+        /// {Default is 0,0}
         /// </summary>
         /// <param name="x">Tile Index</param>
         /// <param name="y">Map Index</param>
@@ -40,6 +41,10 @@ namespace Ludoop
             set { this.y = value; }
         }
 
+        /// <summary>
+        /// clones the current object
+        /// </summary>
+        /// <returns>returns a Vector2D identical to the original object</returns>
         public Vector2D Clone()
         {
             return new Vector2D(this.X, this.Y);
