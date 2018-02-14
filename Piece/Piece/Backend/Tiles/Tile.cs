@@ -4,11 +4,10 @@ using System.Text;
 
 namespace Ludoop
 {
-    public abstract class Tile : ITile
+    public class Tile : ITile
     {
-        public Tile(int x, int y, TileType type)
+        public Tile(TileType type)
         {
-            this.Position = new Vector2D(x, y);
             this.Type = type;
         }
 
@@ -26,6 +25,7 @@ namespace Ludoop
             set { this.nextTile = value; }
         }
 
+        /*
         private Vector2D position;
         /// <summary>
         /// get and set, position for object
@@ -35,6 +35,7 @@ namespace Ludoop
             get { return this.position; }
             set { this.position = value; }
         }
+        */
 
         private TileType type;
 
