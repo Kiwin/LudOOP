@@ -10,7 +10,11 @@ namespace Ludoop.Backend
             tiles = new Tile[size];
         }
 
-        private Tile[] tiles;
+        public Tile[] tiles;
+        public Tile[] Tiles {
+            get { return this.tiles; }
+            set { this.tiles = value; }
+        }
 
 
     }

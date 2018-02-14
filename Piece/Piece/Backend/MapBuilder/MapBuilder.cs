@@ -46,11 +46,16 @@ namespace Ludoop.Backend.MapBuilder
                     switch (rule.REPEAT_TYPE)
                     {
                         case RuleRepetitionType.FIRST:
+                            if (rule.INTERVAL == i) {
 
+                            }
                             break;
                         case RuleRepetitionType.EVERY:
+                            if (i % rule.INTERVAL == 0)
+                            {
 
-                            break;
+                            }
+                        break;
                     }
                 }
             }
