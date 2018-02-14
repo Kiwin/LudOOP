@@ -31,7 +31,8 @@ namespace Ludoop.Backend.MapBuilder
             rules.Add(rule);
         }
 
-        public void ClearRules() {
+        public void ClearRules()
+        {
             rules.Clear();
         }
 
@@ -96,6 +97,17 @@ namespace Ludoop.Backend.MapBuilder
                 if (map.Tiles[i] == null) //If no rule were triggered
                 {
                     map.Tiles[i] = new Tile(defaultTileType); //Set tile to a default tile.
+                }
+
+                if (i == mapSize - 1) //Assign previous and next tile.
+                {
+                    map.Tiles[i].PreviousTile = map.Tiles[0];
+                    map.Tiles[i].PreviousTile.NextTile = map.Tiles[i];
+                }
+                else if (i > 0) //Assign previous and next tile for last and first tile.
+                {
+                    map.Tiles[i].PreviousTile = map.Tiles[i - 1];
+                    map.Tiles[i].PreviousTile.NextTile = map.Tiles[i];
                 }
             }
             return map; //Return the map.

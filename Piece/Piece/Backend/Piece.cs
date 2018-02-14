@@ -23,9 +23,9 @@ namespace Ludoop
         /// <summary>
         /// Getter and Setter for Piece.team
         /// </summary>
-        public PlayerTeam Team 
+        public PlayerTeam Team
         {
-            get { return this.team;}
+            get { return this.team; }
             set { this.team = value; }
         }
 
@@ -65,12 +65,13 @@ namespace Ludoop
         /// <param name="steps">how many tiles to move (forwards or backwards)</param>
         public void Move(int steps)
         {
-
-            if (steps >= 0)
             {
-                for (int i = 0; i <= steps; i++)
-                {
-                    TileStep(i == steps - 1, true);
+                //Check if piece is moving forward.
+                bool isForward = steps > 0;
+                steps = Math.Abs(steps);
+
+                for (int i = 0; i < steps; i++) {
+                    TileStep(i == steps-1, isForward);
 
                     switch (this.Tile.Type)
                     {
@@ -106,10 +107,7 @@ namespace Ludoop
                     }
                 }
             }
-
-
         }
-
 
         /// <summary>
         /// Steps the piece on to the next tile in the array
@@ -120,7 +118,8 @@ namespace Ludoop
             {
                 OnStep(this, this.Tile, this.Tile.NextTile);
                 this.Tile = this.Tile.NextTile;
-            } else
+            }
+            else
             {
                 OnLastStep(this, this.Tile);
                 this.Tile = this.Tile.NextTile;
@@ -150,7 +149,8 @@ namespace Ludoop
         /// Method for getting id of piece.
         /// </summary>
         /// <returns>Id of Piece in form of a Vector2D</returns>
-        public Vector2D getId() {
+        public Vector2D getId()
+        {
             return new Vector2D((int)team, (int)shape);
         }
 
