@@ -17,8 +17,5 @@ namespace Ludoop
             set;
         }
 
-        event EventHandler OnStep;
-
-        event EventHandler OnStepEnd;
     }
 }

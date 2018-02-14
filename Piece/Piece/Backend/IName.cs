@@ -7,7 +7,7 @@ namespace Ludoop
     /// <summary>
     /// Interface for naming an object.
     /// </summary>
-    interface IName
+    public interface IName
     {
         #region Getters and Setters
         string Name {

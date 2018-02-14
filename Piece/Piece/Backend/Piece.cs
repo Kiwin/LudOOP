@@ -8,11 +8,11 @@ namespace Ludoop
     public class Piece : IPiece
     {
         #region Constructors
-        public Piece(PlayerTeam team, PieceShape shape, int x, int y)
+        public Piece(PlayerTeam team, PieceShape shape, Tile tile)
         {
             this.Team = team;
             this.Shape = shape;
-            this.Position = new Vector2D(x, y);
+            this.Tile = tile;
         }
         #endregion
 
@@ -38,16 +38,23 @@ namespace Ludoop
             set { this.shape = value; }
         }
 
+        private Tile tile;
 
-        private Vector2D position;
-        /// <summary>
-        /// Getter and Setter for Piece.position
-        /// </summary>
-        public Vector2D Position
+        public Tile Tile
         {
-            get { return this.position; }
-            set { this.position = value; }
+            get { return this.tile; }
+            set { this.tile = value; }
         }
+
+        //private Vector2D position;
+        ///// <summary>
+        ///// Getter and Setter for Piece.position
+        ///// </summary>
+        //public Vector2D Position
+        //{
+        //    get { return this.position; }
+        //    set { this.position = value; }
+        //}
         #endregion
 
         #region Movement Methods
@@ -59,6 +66,56 @@ namespace Ludoop
         public void Move(int tiles)
         {
 
+            for (int i = 0; i <= tiles; i++)
+            {
+                TileStep();
+
+                switch (this.Tile.Type)
+                {
+                    case TileType.END:
+                        {
+                            break;
+                        }
+                    case TileType.EXIT:
+                        { 
+                            break;
+                        }
+                    case TileType.GLOBE:
+                        {
+                            break;
+                        }
+                    case TileType.SPAWNPOINT:
+                        {
+                            break;
+                        }
+                    case TileType.STAR:
+                        {
+                            break;
+                        }
+                    case TileType.DEFAULT:
+                        {
+                            break;
+                        }
+                    default:
+                        {
+                            OnTypeNotFound(this.tile.Type, this);
+                            break;
+                        }
+                }
+            }
+        }
+
+        public delegate void OnTypeNotFoundHandler(TileType type, Piece piece);
+        public event OnTypeNotFoundHandler OnTypeNotFound;
+
+        /// <summary>
+        /// Steps the piece on to the next tile in the array
+        /// </summary>
+        private void TileStep()
+        {
+            // TODO: IMPLEMENT OnStep and OnStepEnd events
+
+            this.Tile = this.Tile.NextTile;
         }
 
         /// <summary>
@@ -87,6 +144,10 @@ namespace Ludoop
         public Vector2D getId() {
             return new Vector2D((int)team, (int)shape);
         }
+
+
+        public event EventHandler OnStep;
+        public event EventHandler OnStepEnd;
 
     }
 }

@@ -4,8 +4,11 @@ using System.Text;
 
 namespace Ludoop
 {
-    interface IPiece : IMove, IPosition
+    interface IPiece : IMove
     {
 
+        event EventHandler OnStep;
+
+        event EventHandler OnStepEnd;
     }
 }
