@@ -7,13 +7,14 @@ namespace Ludoop.Backend.Tiles
     public class ExitTile : Tile
     {
 
-        public ExitTile(int x, int y, Tile nextMapEntryTile) : base(x, y, TileType.EXIT) {
+        public ExitTile(int x, int y, Tile nextMapEntryTile) : base(x, y, TileType.EXIT)
+        {
             this.nextMapEntryTile = nextMapEntryTile;
         }
 
         private Tile nextMapEntryTile;
-
-        public Tile NextMapEntryTile{
+        public Tile NextMapEntryTile
+        {
             get { return this.nextMapEntryTile; }
             set { this.nextMapEntryTile = value; }
         }
