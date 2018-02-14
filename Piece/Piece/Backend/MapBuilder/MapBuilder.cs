@@ -24,6 +24,15 @@ namespace Ludoop.Backend.MapBuilder
             rules.Add(rule);
         }
 
+        public void ClearRules() {
+            rules.Clear();
+        }
+
+        /// <summary>
+        /// Method should generating a map based on applied rules.
+        /// </summary>
+        /// <param name="mapSize">Size of the map.</param>
+        /// <returns></returns>
         public abstract Map GenerateMap(int mapSize);
 
     }
@@ -46,7 +55,8 @@ namespace Ludoop.Backend.MapBuilder
                     switch (rule.REPEAT_TYPE)
                     {
                         case RuleRepetitionType.FIRST:
-                            if (rule.INTERVAL == i) {
+                            if (rule.INTERVAL == i)
+                            {
                                 map.Tiles[i] = new Tile(rule.TILE_TYPE);
                                 break;
                             }
@@ -57,8 +67,12 @@ namespace Ludoop.Backend.MapBuilder
                                 map.Tiles[i] = new Tile(rule.TILE_TYPE);
                                 break;
                             }
-                        break;
+                            break;
                     }
+                }
+                if (map.Tiles[i] == null)
+                {
+                    map.Tiles[i] = new Tile(TileType.DEFAULT);
                 }
             }
             return map;

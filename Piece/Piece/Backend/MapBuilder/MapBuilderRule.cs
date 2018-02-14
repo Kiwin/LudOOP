@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ludoop.Backend.MapBuilder
 {
-    public enum RuleRepetitionType { FIRST, EVERY };
+    public enum RuleRepetitionType { FIRST, EVERY};
 
     public class MapBuilderRule
     {
