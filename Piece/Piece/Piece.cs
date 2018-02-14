@@ -12,11 +12,10 @@ namespace Ludoop
         /// </summary>
         /// <param name="team">specifies which team the piece is a part of</param>
         /// <param name="position">specifies what position the piece is on</param>
-        public Piece(TeamColor team, Vector2D position)
+        public Piece(TeamColor team, int x, int y)
         {
             this.Team = team;
-            this.Position.X = position.X;
-            this.Position.X = position.X;
+            this.Position = new Vector2D(x, y);
         }
         #endregion
 

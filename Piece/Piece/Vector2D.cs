@@ -10,7 +10,8 @@ namespace Ludoop
     public class Vector2D
     {
         /// <summary>
-        /// Constructor for Vector2D takes a map index and a tile index to specify position
+        /// Constructor for Vector2D takes a map index and a tile index to specify position,
+        /// {Default is 0,0}
         /// </summary>
         /// <param name="x">Tile Index</param>
         /// <param name="y">Map Index</param>
