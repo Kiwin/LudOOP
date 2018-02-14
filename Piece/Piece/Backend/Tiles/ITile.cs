@@ -9,7 +9,7 @@ namespace Ludoop
     /// </summary>
     public enum TileType { DEFAULT, GLOBE, STAR, SPAWNPOINT, EXIT, END};
     
-    interface ITile : IPosition
+    interface ITile
     {
 
         TileType Type {

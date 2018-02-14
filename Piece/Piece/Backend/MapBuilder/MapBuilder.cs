@@ -47,13 +47,15 @@ namespace Ludoop.Backend.MapBuilder
                     {
                         case RuleRepetitionType.FIRST:
                             if (rule.INTERVAL == i) {
-
+                                map.Tiles[i] = new Tile(rule.TILE_TYPE);
+                                break;
                             }
                             break;
                         case RuleRepetitionType.EVERY:
                             if (i % rule.INTERVAL == 0)
                             {
-
+                                map.Tiles[i] = new Tile(rule.TILE_TYPE);
+                                break;
                             }
                         break;
                     }
