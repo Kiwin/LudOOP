@@ -47,9 +47,7 @@ namespace Ludoop
             get { return this.type; }
             set { this.type = value; }
         }
-
-        public event EventHandler OnStep;
-        public event EventHandler OnStepEnd;
+        
 
     }
 }
