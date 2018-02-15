@@ -23,7 +23,7 @@ namespace Ludoop.Backend.MapBuilder
         }
 
         /// <summary>
-        /// Method for adding rules that indicate what types tiles should be.
+        /// Method for adding rules that indicate what types tiles should be added.
         /// </summary>
         /// <param name="rule">MapBuilderRule to add</param>
         public void AddRule(MapBuilderRule rule)
@@ -69,7 +69,7 @@ namespace Ludoop.Backend.MapBuilder
         /// <returns></returns>
         public override Map GenerateMap(int mapSize)
         {
-            Map map = new Map(mapSize); //Instanciate map object.
+            Map map = new Map(mapSize); //Instantiate map object.
             for (int i = 0; i < mapSize; i++) //Loop through tiles.
             {
                 foreach (MapBuilderRule rule in rules) //Loop through rules.

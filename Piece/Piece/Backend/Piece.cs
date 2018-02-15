@@ -13,6 +13,7 @@ namespace Ludoop
             this.Team = team;
             this.Shape = shape;
             this.Tile = tile;
+            OnSpawn(this, tile);
         }
         #endregion
 
@@ -132,7 +133,7 @@ namespace Ludoop
         /// <param name="tileIndex">tile index to move to</param>
         public void MoveTo(int tileIndex)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
@@ -163,6 +164,9 @@ namespace Ludoop
 
         public delegate void OnLastStepHandler(Piece piece, Tile currentTile);
         public event OnLastStepHandler OnLastStep;
+
+        public delegate void OnSpawnHandler(Piece piece, Tile spawnTile);
+        public event OnSpawnHandler OnSpawn;
 
     }
 }

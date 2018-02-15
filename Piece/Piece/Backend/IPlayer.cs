@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ludoop.Backend
 {
-    public interface IPlayer : IName
+    public interface IPlayer : IName, ITeam
     {
 
     }
