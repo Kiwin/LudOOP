@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Ludoop.Backend.Tiles
 {
-    public class ExitTile : Tile
+    public class ExitTile : Tile, ITeam
     {
+
+        private PlayerTeam team;
 
         public ExitTile(Tile nextMapEntryTile) : base(TileType.EXIT)
         {
@@ -19,5 +21,10 @@ namespace Ludoop.Backend.Tiles
             set { this.nextMapEntryTile = value; }
         }
 
+        public PlayerTeam Team
+        {
+            get { return this.team; }
+            set { this.team = value; }
+        }
     }
 }

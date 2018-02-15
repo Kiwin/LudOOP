@@ -77,16 +77,16 @@ namespace Ludoop.Backend.MapBuilder
                     switch (rule.REPEAT_TYPE)
                     {
                         //If rule should apply only first time 'i' hits interval.
-                        case RuleRepetitionType.FIRST:
-                            if (rule.INTERVAL == i) //Check if rule should apply this iteration.
+                        case RuleRepetitionMode.FIRST:
+                            if (rule.INTERVAL == i-rule.INTERVAL_OFFSET) //Check if rule should apply this iteration.
                             {
                                 map.Tiles[i] = new Tile(rule.TILE_TYPE); //Create new tile
                                 break; //Break out of looping though rules and continue to next tile.
                             }
                             break;
                         //If rule should apply every time 'i' hits interval.
-                        case RuleRepetitionType.EVERY:
-                            if (i % rule.INTERVAL == 0) //Check if rule should apply this iteration.
+                        case RuleRepetitionMode.EVERY:
+                            if ((i - rule.INTERVAL_OFFSET) % rule.INTERVAL == 0) //Check if rule should apply this iteration.
                             {
                                 map.Tiles[i] = new Tile(rule.TILE_TYPE); //Create new tile
                                 break; //Break out of looping though rules and continue to next tile.
@@ -101,13 +101,13 @@ namespace Ludoop.Backend.MapBuilder
 
                 if (i == mapSize - 1) //Assign previous and next tile.
                 {
-                    map.Tiles[i].PreviousTile = map.Tiles[0];
-                    map.Tiles[i].PreviousTile.NextTile = map.Tiles[i];
+                    map.Tiles[i].PrevTile = map.Tiles[0];
+                    map.Tiles[i].PrevTile.NextTile = map.Tiles[i];
                 }
                 else if (i > 0) //Assign previous and next tile for last and first tile.
                 {
-                    map.Tiles[i].PreviousTile = map.Tiles[i - 1];
-                    map.Tiles[i].PreviousTile.NextTile = map.Tiles[i];
+                    map.Tiles[i].PrevTile = map.Tiles[i - 1];
+                    map.Tiles[i].PrevTile.NextTile = map.Tiles[i];
                 }
             }
             return map; //Return the map.

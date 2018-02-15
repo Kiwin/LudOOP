@@ -146,6 +146,7 @@ namespace Ludoop
             throw new NotImplementedException();
         }
         #endregion
+
         /// <summary>
         /// Method for getting id of piece.
         /// </summary>
