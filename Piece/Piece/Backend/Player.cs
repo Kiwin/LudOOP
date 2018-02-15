@@ -10,9 +10,12 @@ namespace Ludoop
     /// </summary>
     public class Player : IPlayer
     {
+
+        private string name;
+
         public string Name {
-            get => throw new NotImplementedException();
-            set => throw new NotImplementedException();
+            get { return this.name; }
+            set { this.name = value; }
         }
     }
 }
