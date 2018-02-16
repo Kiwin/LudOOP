@@ -18,6 +18,7 @@ namespace Ludoop
             this.Team = team;
             this.Shape = shape;
             this.Tile = tile;
+            OnSpawn(this, tile);
         }
         #endregion
 
@@ -170,6 +171,9 @@ namespace Ludoop
 
         public delegate void OnLastStepHandler(Piece piece, Tile currentTile);
         public event OnLastStepHandler OnLastStep;
+
+        public delegate void OnSpawnHandler(Piece piece, Tile spawnTile);
+        public event OnSpawnHandler OnSpawn;
 
     }
 }

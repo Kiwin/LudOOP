@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ludoop.Backend
 {
-        public enum PlayerTeam { RED, GREEN, YELLOW, BLUE };
+    public enum PlayerTeam { RED, GREEN, YELLOW, BLUE };
 
     public interface ITeam
     {
