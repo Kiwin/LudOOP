@@ -9,7 +9,7 @@ namespace Ludoop.Backend.Tiles
 
         private PlayerTeam team;
 
-        public ExitTile(Tile nextMapEntryTile) : base(TileType.EXIT)
+        public ExitTile(Map map, Tile nextMapEntryTile) : base(TileType.EXIT, map)
         {
             this.nextMapEntryTile = nextMapEntryTile;
         }

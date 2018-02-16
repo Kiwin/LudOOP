@@ -7,6 +7,11 @@ namespace Ludoop
 
     public class Piece : IPiece
     {
+
+        bool hasMoved; //Piece moved this round.
+        Tile currentTile;
+        Tile lastTile;
+
         #region Constructors
         public Piece(PlayerTeam team, PieceShape shape, Tile tile)
         {
@@ -67,11 +72,12 @@ namespace Ludoop
         {
             {
                 //Check if piece is moving forward.
-                bool isForward = steps > 0;
+                bool isMovingForward = steps > 0;
                 steps = Math.Abs(steps);
 
                 for (int i = 0; i < steps; i++) {
-                    TileStep(i == steps-1, isForward);
+                    bool isLastStep = i == steps-1;
+                    TileStep(isLastStep, isMovingForward);
 
                     switch (this.Tile.Type)
                     {
