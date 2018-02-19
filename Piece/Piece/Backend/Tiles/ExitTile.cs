@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop.Backend.Tiles
+namespace Ludoop.Backend
 {
     public class ExitTile : Tile, ITeam
     {
 
-        private PlayerTeam team;
-
-        public ExitTile(Map map, Tile nextMapEntryTile) : base(TileType.EXIT, map)
+        public ExitTile(Map map, int index, Tile destinationTile, PlayerTeam team) : base(TileType.EXIT, map, index)
         {
-            this.nextMapEntryTile = nextMapEntryTile;
+            this.DestinationTile = destinationTile;
+            this.Team = team;
         }
 
-        private Tile nextMapEntryTile;
-        public Tile NextMapEntryTile
-        {
-            get { return this.nextMapEntryTile; }
-            set { this.nextMapEntryTile = value; }
-        }
+        public Tile DestinationTile { get; set; }
+        public override Actor Actor { get; set; }
+        public PlayerTeam Team { get; set; }
 
-        public PlayerTeam Team
+        public override void onPieceLeave(Piece piece, bool isForward, bool isLast)
         {
-            get { return this.team; }
-            set { this.team = value; }
+            {
+                if (isLast && piece.Team == this.Team)
+                {
+                    piece.CurrentTile = this.DestinationTile;
+                }
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop.Backend.MapBuilder
+namespace Ludoop.Backend
 {
     public enum RuleRepetitionMode { FIRST, EVERY};
 
