@@ -49,6 +49,6 @@ namespace Ludoop.Backend
         /// <param name="isForward">is the piece moving forward?</param>
         /// <param name="isLast">Is the current step the last </param>
         virtual public void onPieceEnter(Piece piece, bool isForward, bool isLast) { }
-        public abstract Actor actor { get; set; }
+        public abstract Actor Actor { get; set; }
     }
 }

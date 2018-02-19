@@ -15,7 +15,7 @@ namespace Ludoop.Backend
         }
 
         public Tile DestinationTile { get; set; }
-        public override Actor actor { get; set; }
+        public override Actor Actor { get; set; }
         public PlayerTeam Team { get; set; }
 
         public override void onPieceLeave(Piece piece, bool isForward, bool isLast)
