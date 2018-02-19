@@ -21,41 +21,49 @@ namespace Ludoop.Backend
             }
         }
 
+        /// <summary>
+        /// Method for replacing a specified map tile.
+        /// </summary>
+        /// <param name="tileIndex">Index of tile to set.</param>
+        /// <param name="tile">Instance of new tile</param>
         public void SetTile(int tileIndex, Tile tile)
         {
-            if (tileIndex >= 0 && tileIndex < Tiles.Length)
+            if (tileIndex >= 0 && tileIndex < Tiles.Length) //Check if tileIndex is a valid array index.
             {
                 Tiles[tileIndex] = tile;
-                if (tileIndex != Tiles.Length - 1)
+                if (tileIndex != Tiles.Length - 1) //Check if tile is not last tile.
                 {
                     tile.NextTile = Tiles[tileIndex + 1];
                 }
-                else if (isLoopMap)
+                else if (isLoopMap) //Else check if map is loopmap
                 {
-                    tile.NextTile = Tiles[0];
+                    tile.NextTile = this.FirstTile;
                 }
-                if (tileIndex != 0)
+                if (tileIndex != 0) //Check if tile is not first tile
                 {
                     tile.PrevTile = Tiles[tileIndex - 1];
                 }
-                else if (isLoopMap)
+                else if (isLoopMap) //Else check if map is loopmap
                 {
-                    tile.NextTile = Tiles[Tiles.Length - 1];
+                    tile.PrevTile = this.LastTile;
                 }
             }
         }
 
+        //Last tile of the map.
         public Tile LastTile
         {
             get { return this.Tiles[Tiles.Length - 1]; }
             set { this.Tiles[Tiles.Length - 1] = value; }
         }
+        //First tile of the map.
         public Tile FirstTile
         {
             get { return this.Tiles[0]; }
             set { this.Tiles[0] = value; }
         }
 
+        //Name tag of the map.
         public string Name { get; set; }
 
         public string[] GetTilesInfo()
