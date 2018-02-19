@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop.Backend.MapBuilder
+namespace Ludoop.Backend
 {
     /// <summary>
     /// Abstract Class representing a map builder.

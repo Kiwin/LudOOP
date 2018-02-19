@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop
+namespace Ludoop.Backend
 {
     /// <summary>
     /// Interface for naming an object.

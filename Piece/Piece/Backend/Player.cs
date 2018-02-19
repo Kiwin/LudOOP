@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ludoop
+namespace Ludoop.Backend
 {
     /// <summary>
     /// Class representing a player.
     /// </summary>
-    public class Player : IPlayer
+    public class Player : ITeam, IName
     {
         public Player(string name, PlayerTeam team)
         {
@@ -41,10 +41,10 @@ namespace Ludoop
 
         public void SpawnPiece(Tile tile)
         {
-            foreach (PieceShape shape in Enum.GetValues(typeof(PieceShape)))
+            foreach (PieceType shape in Enum.GetValues(typeof(PieceType)))
             {
                 // if PieceShape is not present in pieces
-                if (!piecesOnBoard.Any(piece => piece.Shape == shape))
+                if (!piecesOnBoard.Any(piece => piece.Type == shape))
                 {
                     piecesOnBoard.Add(new Piece(Team, shape, tile));
                     PieceBuffer += PieceBuffer - 1;
