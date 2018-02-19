@@ -6,9 +6,21 @@ namespace Ludoop.Backend
 {
     public class Map : IName
     {
+        /// <summary>
+        /// Array of Tile objects.
+        /// </summary>
         public Tile[] Tiles;
+
+        /// <summary>
+        /// Flag for checking if map is a loop.
+        /// </summary>
         bool isLoopMap;
 
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
+        /// <param name="size">Size of the map.</param>
+        /// <param name="isLoopMap">Flag for checking if map is a loop.</param>
         public Map(int size, bool isLoopMap)
         {
             this.Tiles = new Tile[size];
@@ -34,37 +46,41 @@ namespace Ludoop.Backend
                 {
                     tile.NextTile = Tiles[tileIndex + 1];
                 }
-                else if (isLoopMap) //Else check if map is loopmap
+                else if (isLoopMap) //Else check if map is loopmap.
                 {
                     tile.NextTile = this.FirstTile;
                 }
-                if (tileIndex != 0) //Check if tile is not first tile
+                if (tileIndex != 0) //Check if tile is not first tile.
                 {
                     tile.PrevTile = Tiles[tileIndex - 1];
                 }
-                else if (isLoopMap) //Else check if map is loopmap
+                else if (isLoopMap) //Else check if map is loopmap.
                 {
                     tile.PrevTile = this.LastTile;
                 }
             }
         }
 
-        //Last tile of the map.
+        //Getter and Setter for the last tile of the map.
         public Tile LastTile
         {
             get { return this.Tiles[Tiles.Length - 1]; }
             set { this.Tiles[Tiles.Length - 1] = value; }
         }
-        //First tile of the map.
+        //Getter and Setter for the first tile of the map.
         public Tile FirstTile
         {
             get { return this.Tiles[0]; }
             set { this.Tiles[0] = value; }
         }
 
-        //Name tag of the map.
+        //Map name Getter and Setter.
         public string Name { get; set; }
 
+        /// <summary>
+        /// Method for getting an info-string about all tiles.
+        /// </summary>
+        /// <returns></returns>
         public string[] GetTilesInfo()
         {
             string[] tileInfo = new string[Tiles.Length];
@@ -77,6 +93,11 @@ namespace Ludoop.Backend
             return tileInfo;
         }
 
+        /// <summary>
+        /// Method for getting an info-string for a tile specified by index.
+        /// </summary>
+        /// <param name="index">Index of tile</param>
+        /// <returns></returns>
         public string GetTileInfo(int index)
         {
             Tile tile = Tiles[index];
@@ -84,12 +105,12 @@ namespace Ludoop.Backend
             string strIdx = tile.Index.ToString();
             string strType = tile.TYPE.ToString();
             string strInfo = strMap + ":" + strIdx + ":" + strType;
-            if (tile is ITeam) //Add Team Info
+            if (tile is ITeam) //Check if should add Team Info.
             {
                 string strTeam = Enum.GetName(typeof(PlayerTeam), ((ITeam)tile).Team);
                 strInfo += ":" + strTeam;
             }
-            if (tile is ExitTile) //Add Destination Tile Info
+            if (tile is ExitTile) //Check if should add ExitTile Destination Info.
             {
                 Tile destinationTile = ((ExitTile)tile).DestinationTile;
                 strInfo += "\t->\t" + destinationTile.Map.GetTileInfo(destinationTile.Index);

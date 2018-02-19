@@ -1,55 +1,33 @@
-﻿using System;
+﻿using Ludoop.Backend;
+using Ludoop.View;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop
+namespace Ludoop.Backend
 {
-    public class Tile : ITile
+    public abstract class Tile : IDraw
     {
-        public Tile(TileType type)
+        public readonly TileType TYPE;
+        public Map Map;
+        public Tile NextTile;
+        public Tile PrevTile;
+        public int Index;
+
+        public Tile(TileType type, Map map, int index)
         {
-            this.Type = type;
+            this.TYPE = type;
+            this.Map = map;
+            this.Index = index;
             this.NextTile = this;
             this.PrevTile = this;
         }
 
-        private Tile prevTile;
-        public Tile PrevTile
+        virtual public void onPieceLeave(Piece piece, bool isForward, bool isLast)
         {
-            get { return this.prevTile; }
-            set { this.prevTile = value; }
+            piece.CurrentTile = this.NextTile;
         }
-
-        private Tile nextTile;
-        public Tile NextTile
-        {
-            get { return this.nextTile; }
-            set { this.nextTile = value; }
-        }
-
-        /*
-        private Vector2D position;
-        /// <summary>
-        /// get and set, position for object
-        /// </summary>
-        public Vector2D Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
-        }
-        */
-
-        private TileType type;
-
-        /// <summary>
-        /// get and set, type of tile
-        /// </summary>
-        public TileType Type
-        {
-            get { return this.type; }
-            set { this.type = value; }
-        }
-        
-
+        virtual public void onPieceEnter(Piece piece, bool isForward, bool isLast) { }
+        public abstract Actor actor { get; set; }
     }
 }
