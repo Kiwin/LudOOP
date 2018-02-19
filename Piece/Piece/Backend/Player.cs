@@ -11,6 +11,11 @@ namespace Ludoop
     /// </summary>
     public class Player : IPlayer
     {
+        public Player(string name, PlayerTeam team)
+        {
+            this.Name = name;
+            this.Team = team;
+        }
 
         private string name;
         public string Name {
@@ -25,16 +30,24 @@ namespace Ludoop
             set { this.team = value; }
         }
 
-        private List<Piece> pieces;
+        private List<Piece> piecesOnBoard;
+        private int pieceBuffer;
+
+        public int PieceBuffer
+        {
+            get { return pieceBuffer; }
+            set { this.pieceBuffer = value; }
+        }
 
         public void SpawnPiece(Tile tile)
         {
             foreach (PieceShape shape in Enum.GetValues(typeof(PieceShape)))
             {
                 // if PieceShape is not present in pieces
-                if (!pieces.Any(piece => piece.Shape == shape))
+                if (!piecesOnBoard.Any(piece => piece.Shape == shape))
                 {
-                    Piece newPiece = new Piece(Team, shape, tile);
+                    piecesOnBoard.Add(new Piece(Team, shape, tile));
+                    PieceBuffer += PieceBuffer - 1;
                 }
             }
         }

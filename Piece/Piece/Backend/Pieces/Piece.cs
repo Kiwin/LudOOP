@@ -117,8 +117,11 @@ namespace Ludoop
         {
             if (!isLastStep)
             {
+                // Just before the tile is stepped we fire an event 
                 OnStep(this, this.Tile, this.Tile.NextTile);
                 this.Tile = this.Tile.NextTile;
+                
+                OnStepEnd(this, this.Tile.PrevTile, this.Tile);
             }
             else
             {
@@ -162,9 +165,11 @@ namespace Ludoop
 
         public delegate void OnStepHandler(Piece piece, Tile currentTile, Tile newTile);
         public event OnStepHandler OnStep;
+        public event OnStepHandler OnStepEnd;
 
         public delegate void OnLastStepHandler(Piece piece, Tile currentTile);
         public event OnLastStepHandler OnLastStep;
+        public event OnLastStepHandler OnLastStepEnd;
 
         public delegate void OnSpawnHandler(Piece piece, Tile spawnTile);
         public event OnSpawnHandler OnSpawn;

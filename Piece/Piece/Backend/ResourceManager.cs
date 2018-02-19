@@ -5,20 +5,25 @@ using System.Linq;
 
 namespace Ludoop.Backend.Tiles
 {
-    class GameManager
+    class ResourceManager
     {
-        private Map map;
+        private GameBoard board;
 
-        public Map Map
+        public GameBoard Board
         {
-            get { return map; }
-            set { this.map = value; }
+            get { return board; }
+            set { this.board = value; }
         }
 
         // TODO: Loop through all players and add them all and get pieces for them all.
+        // TODO: Build GameBoard from this function as well with all rules implemented.
+        // Gameboard is kiwins new method of handling the map 
         private void Initialize(Player[] players, int piecesPerPlayer)
         {
-            
+            for (int i = 0; i <= players.Length; i++)
+            {
+                players[i].PieceBuffer = piecesPerPlayer;
+            }
         }
 
         private List<Player> players;

@@ -9,13 +9,15 @@ namespace Ludoop
         public Tile(TileType type)
         {
             this.Type = type;
+            this.NextTile = this;
+            this.PrevTile = this;
         }
 
-        private Tile previousTile;
-        public Tile PreviousTile
+        private Tile prevTile;
+        public Tile PrevTile
         {
-            get { return this.previousTile; }
-            set { this.previousTile = value; }
+            get { return this.prevTile; }
+            set { this.prevTile = value; }
         }
 
         private Tile nextTile;
