@@ -7,7 +7,7 @@ namespace Ludoop.View
     public interface IDraw
     {
 
-        Actor actor{
+        Actor Actor{
             get;
             set;
         }
