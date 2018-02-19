@@ -1,12 +1,11 @@
 ﻿using Ludoop.Backend;
+using Ludoop.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ludoop.Backend
 {
-    public enum TileType { DEFAULT, SPAWN, STAR, GLOBE, EXIT, END };
-
     public abstract class Tile : IDraw
     {
         public readonly TileType TYPE;
@@ -29,6 +28,6 @@ namespace Ludoop.Backend
             piece.CurrentTile = this.NextTile;
         }
         virtual public void onPieceEnter(Piece piece, bool isForward, bool isLast) { }
-        public abstract Actor Actor { get; set; }
+        public abstract Actor actor { get; set; }
     }
 }

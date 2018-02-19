@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Ludoop.View;
 
 namespace Ludoop.Backend
 {
@@ -14,7 +15,7 @@ namespace Ludoop.Backend
         }
 
         public Tile DestinationTile { get; set; }
-        public override Actor Actor { get; set; }
+        public override Actor actor { get; set; }
         public PlayerTeam Team { get; set; }
 
         public override void onPieceLeave(Piece piece, bool isForward, bool isLast)

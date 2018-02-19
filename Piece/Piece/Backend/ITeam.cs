@@ -8,7 +8,6 @@ namespace Ludoop.Backend
 
     public interface ITeam
     {
-
         PlayerTeam Team{
             get;
             set;

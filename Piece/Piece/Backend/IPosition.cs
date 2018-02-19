@@ -7,7 +7,8 @@ namespace Ludoop.Backend
     interface IPosition
     {
         /// <summary>
-        /// Defines the position of the object
+        /// Defines the position of the object 
+        /// CURRENTLY DEPRECATED DUE TO A REWORK OF THE GENERAL LOCATION BASED PIECES
         /// </summary>
         Vector2D Position
         {
