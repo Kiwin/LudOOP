@@ -77,7 +77,10 @@ namespace Ludoop.Backend
         {
             // loops through all players and finds the first with the same name as the parameter and then removes it
             Player player = players.Find(cur => cur.Name == name);
-            players.Remove(player);
+            if (player != null)
+            {
+                players.Remove(player);
+            }
         }
     }
 }

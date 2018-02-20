@@ -5,7 +5,7 @@ namespace Ludoop.Backend
 {
     public enum PieceType { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
 
-    public abstract class Piece : ITeam
+    public class Piece : ITeam
     {
 
         public Tile CurrentTile { get; set; }
@@ -17,10 +17,11 @@ namespace Ludoop.Backend
         /// </summary>
         /// <param name="type">the type of piece works along with the current team of the piece as an ID</param>
         /// <param name="tile">defines the current tile the piece is on</param>
-        public Piece(PieceType type, Tile tile)
+        public Piece(PlayerTeam team, PieceType type, Tile tile)
         {
             this.Type = type;
             this.CurrentTile = tile;
+            this.Team = team;
         }
 
         public PlayerTeam Team { get; set; }
@@ -31,6 +32,8 @@ namespace Ludoop.Backend
         /// <param name="steps">the amount of steps to move</param>
         public void Move(int steps)
         {
+            Tile previousTile = CurrentTile;
+
             // Determines whether the piece is moving backwards or forwards
             bool isMovingForward = steps > 0;
             // sets an absolute value to the amount of steps
@@ -47,12 +50,18 @@ namespace Ludoop.Backend
                     CurrentTile.onPieceEnter(this, isMovingForward, isLastStep);
                 }
             }
+            OnMove(this, previousTile, CurrentTile);
         }
 
         // "Warps" to the tile in question instead of stepping 
         public void WarpTo(Tile tile)
         {
+            Tile oldTile = CurrentTile;
             CurrentTile = tile;
+            OnMove(this, oldTile, CurrentTile);
         }
+
+        public delegate void PieceMovedHandler(Piece piece, Tile previousTile, Tile newTile);
+        public event PieceMovedHandler OnMove;
     }
 }

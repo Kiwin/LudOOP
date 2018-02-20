@@ -12,8 +12,8 @@ namespace Ludoop.Backend
     {
         public readonly TileType TYPE;
         public Map Map;
-        public Tile NextTile;
-        public Tile PrevTile;
+        private Tile NextTile;
+        private Tile PrevTile;
         public int Index;
 
         /// <summary>
@@ -40,6 +40,16 @@ namespace Ludoop.Backend
         virtual public void onPieceLeave(Piece piece, bool isForward, bool isLast)
         {
             piece.CurrentTile = this.NextTile;
+        }
+
+        public virtual Tile GetNextTile(Piece piece)
+        {
+            return this.NextTile;
+        }
+
+        public virtual Tile GetPrevousTile(Piece piece)
+        {
+            return this.PrevTile;
         }
 
         /// <summary>
