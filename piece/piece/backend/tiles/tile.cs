@@ -1,55 +1,64 @@
-﻿using System;
+﻿using Ludoop.Backend;
+using Ludoop.View;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop
+namespace Ludoop.Backend
 {
-    public class Tile : ITile
+
+    // Base class for tiles
+    public abstract class Tile : IDraw
     {
-        public Tile(TileType type)
+        public readonly TileType TYPE;
+        public Map Map;
+        private Tile NextTile;
+        private Tile PrevTile;
+        public int Index;
+
+        /// <summary>
+        /// Constructor for the Tiletype
+        /// </summary>
+        /// <param name="type">the type of the tile defined in ITile</param>
+        /// <param name="map">defines the Map the tile is on</param>
+        /// <param name="index">Defines the index the tile is on</param>
+        public Tile(TileType type, Map map, int index)
         {
-            this.Type = type;
+            this.TYPE = type;
+            this.Map = map;
+            this.Index = index;
             this.NextTile = this;
             this.PrevTile = this;
         }
 
-        private Tile prevTile;
-        public Tile PrevTile
-        {
-            get { return this.prevTile; }
-            set { this.prevTile = value; }
-        }
-
-        private Tile nextTile;
-        public Tile NextTile
-        {
-            get { return this.nextTile; }
-            set { this.nextTile = value; }
-        }
-
-        /*
-        private Vector2D position;
         /// <summary>
-        /// get and set, position for object
+        /// when a piece leaves the current tile the piece changes its current tile to the next tile (steps the tile once over) 
         /// </summary>
-        public Vector2D Position
+        /// <param name="piece">the piece in question</param>
+        /// <param name="isForward">is the piece moving forward?</param>
+        /// <param name="isLast">Is the current step the last </param>
+        virtual public void onPieceLeave(Piece piece, bool isForward, bool isLast)
         {
-            get { return this.position; }
-            set { this.position = value; }
+            piece.CurrentTile = this.NextTile;
         }
-        */
 
-        private TileType type;
+        public virtual Tile GetNextTile(Piece piece)
+        {
+            return this.NextTile;
+        }
+
+        public virtual Tile GetPrevousTile(Piece piece)
+        {
+            return this.PrevTile;
+        }
 
         /// <summary>
-        /// get and set, type of tile
+        /// runs when the piece enters a tile
         /// </summary>
-        public TileType Type
-        {
-            get { return this.type; }
-            set { this.type = value; }
-        }
-        
-
+        /// <param name="piece">the piece in question</param>
+        /// <param name="isForward">is the piece moving forward?</param>
+        /// <param name="isLast">Is the current step the last </param>
+        virtual public void onPieceEnter(Piece piece, bool isForward, bool isLast) { }
+        public abstract Actor Actor { get; set; }
     }
 }
