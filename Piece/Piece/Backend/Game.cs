@@ -63,6 +63,16 @@ namespace Ludoop.Backend
 
             CurrentPlayer = luckiestPlayer;
         }
+
+        public static ConsoleColor GetTeamColor(PlayerTeam team) {
+            switch (team) {
+                case PlayerTeam.BLUE: { return ConsoleColor.Blue; }
+                case PlayerTeam.GREEN: { return ConsoleColor.Green; }
+                case PlayerTeam.RED: { return ConsoleColor.Red; }
+                case PlayerTeam.YELLOW: { return ConsoleColor.DarkYellow; }
+                default: { return ConsoleColor.White; }
+            }
+        }
     }
 }
 

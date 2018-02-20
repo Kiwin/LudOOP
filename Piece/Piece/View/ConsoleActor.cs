@@ -30,7 +30,9 @@ namespace Ludoop.View
         {
             for (int i = 0; i < (int)w; i++)
             {
-                for (int j = 0; j < (int)w; j++)
+                Console.ForegroundColor = GetForegroundColor();
+                Console.BackgroundColor = GetBackgroundColor();
+                for (int j = 0; j < (int)h; j++)
                 {
                     Console.SetCursorPosition((int)(x * w + i), (int)(y * h + j));
                     Console.Write(GetSymbol());
@@ -43,5 +45,18 @@ namespace Ludoop.View
         /// </summary>
         /// <returns>Character representing actor.</returns>
         public abstract char GetSymbol();
+
+        /// <summary>
+        /// Method for getting the actor foreground color.
+        /// </summary>
+        /// <returns>Actor's foreground color.</returns>
+        public abstract ConsoleColor GetForegroundColor();
+
+        /// <summary>
+        /// Method for getting the actor background color.
+        /// </summary>
+        /// <returns>Actor's background color.</returns>
+        public abstract ConsoleColor GetBackgroundColor();
+
     }
 }
