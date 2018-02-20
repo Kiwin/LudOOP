@@ -8,6 +8,12 @@ namespace Ludoop.Backend
 {
     public class Dice
     {
+
+        private int previousRoll;
+        public int GetPreviousRoll()
+        {
+            return previousRoll;
+        }
         /// <summary>
         /// Constructor for the Dice
         /// </summary>
@@ -19,8 +25,11 @@ namespace Ludoop.Backend
         int Size;
 
         // Returns a random value
-        public int Roll() {
-            return new Random().Next(Size);
+        public int Roll()
+        {
+            int value = new Random().Next(Size);
+            previousRoll = value;
+            return value;
         }
     }
 }
