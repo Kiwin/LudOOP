@@ -63,6 +63,8 @@ namespace Ludoop.Backend
 
             CurrentPlayer = luckiestPlayer;
         }
+
+        
     }
 }
 
