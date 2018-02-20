@@ -11,25 +11,33 @@ namespace Ludoop.Backend
     public enum MapSectionLoop { SHARED = 1, RED = 0, BLUE = 0, YELLOW = 0, GREEN = 0 };
     public class GameBoard
     {
+        /// <summary>
+        /// Array of all gameboard maps.
+        /// </summary>
+        public DrawableMap[] maps;
 
-        public Map[] maps;
-
+        /// <summary>
+        /// Class Constructor.
+        /// </summary>
         public GameBoard()
         {
             initializeMaps();
         }
 
+        /// <summary>
+        /// Method for initializing the maps with a setup of a normal ludo map.
+        /// </summary>
         private void initializeMaps()
         {
             //Instantiate map array.
-            maps = new Map[5];
+            maps = new DrawableMap[5];
 
             //Initialize maps
-            Map sharedMap = (maps[(int)MapSection.SHARED] = new Map(size: (int)MapSectionSize.SHARED, isLoopMap: true));
-            Map redMap = (maps[(int)MapSection.RED] = new Map(size: (int)MapSectionSize.RED, isLoopMap: false));
-            Map blueMap = (maps[(int)MapSection.BLUE] = new Map(size: (int)MapSectionSize.BLUE, isLoopMap: false));
-            Map yellowMap = (maps[(int)MapSection.YELLOW] = new Map(size: (int)MapSectionSize.YELLOW, isLoopMap: false));
-            Map greenMap = (maps[(int)MapSection.GREEN] = new Map(size: (int)MapSectionSize.GREEN, isLoopMap: false));
+            DrawableMap sharedMap = (maps[(int)MapSection.SHARED] = new DrawableMap(size: (int)MapSectionSize.SHARED, isLoopMap: true));
+            DrawableMap redMap = (maps[(int)MapSection.RED] = new DrawableMap(size: (int)MapSectionSize.RED, isLoopMap: false));
+            DrawableMap blueMap = (maps[(int)MapSection.BLUE] = new DrawableMap(size: (int)MapSectionSize.BLUE, isLoopMap: false));
+            DrawableMap yellowMap = (maps[(int)MapSection.YELLOW] = new DrawableMap(size: (int)MapSectionSize.YELLOW, isLoopMap: false));
+            DrawableMap greenMap = (maps[(int)MapSection.GREEN] = new DrawableMap(size: (int)MapSectionSize.GREEN, isLoopMap: false));
 
             sharedMap.Name = "SharedMap";
             redMap.Name = "RedMap";
@@ -53,6 +61,18 @@ namespace Ludoop.Backend
             Array.ForEach(submaps, (map) => { Console.WriteLine(String.Join("\n", map.GetTilesInfo())); });
             Console.ReadKey();
 
+        }
+
+        /// <summary>
+        /// Method for drawing all gameboard maps.
+        /// </summary>
+        public void Draw() {
+            foreach(DrawableMap map in maps) {
+                foreach (Tile tile in map.Tiles)
+                {
+                    tile.Actor.Draw();
+                }
+            }
         }
     }
 }

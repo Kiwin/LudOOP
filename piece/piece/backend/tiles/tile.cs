@@ -12,8 +12,8 @@ namespace Ludoop.Backend
     {
         public readonly TileType TYPE;
         public Map Map;
-        private Tile NextTile;
-        private Tile PrevTile;
+        public Tile NextTile;
+        public Tile PrevTile;
         public int Index;
 
         /// <summary>
@@ -51,6 +51,7 @@ namespace Ludoop.Backend
         {
             return this.PrevTile;
         }
+        
 
         /// <summary>
         /// runs when the piece enters a tile
