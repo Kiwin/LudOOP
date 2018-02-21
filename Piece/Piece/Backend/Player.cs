@@ -1,4 +1,5 @@
 ﻿using Ludoop.Backend;
+using Ludoop.Backend.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,28 @@ namespace Ludoop.Backend
         /// List of all pieces owned by the player currently on the board
         /// </summary>
         private List<Piece> piecesOnBoard;
+
+        public Piece GetPiece(PieceType shape)
+        {
+            if (piecesOnBoard == null)
+            {
+                throw new NullReferenceException();
+            } else if (!piecesOnBoard.Exists(curpiece => curpiece.Type == shape))
+            {
+                throw new InvalidOperationException();
+            }
+
+            Piece piece = piecesOnBoard.Find(curpiece => curpiece.Type == shape);
+            return piece;
+
+        }
+
+        public bool HasPieceOnBoard(PieceType shape)
+        {
+            if (!piecesOnBoard.Any(piece => piece.Type == shape))
+                return true;
+            return false;
+        }
 
         /// <summary>
         /// Value representing the pieces not currently on the board

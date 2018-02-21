@@ -73,6 +73,12 @@ namespace Ludoop.Backend
                 default: { return ConsoleColor.White; }
             }
         }
+
+        //TODO: Check if pieces are already on tile and rules applying to such 
+        public void MovePiece(Piece piece, int steps)
+        {
+            
+        }
     }
 }
 

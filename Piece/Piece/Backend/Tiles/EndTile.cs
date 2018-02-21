@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Ludoop.View;
 
 
-namespace Ludoop.Backend
+namespace Ludoop.Backend.Tiles
 {
     class EndTile : Tile, ITeam
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop.Backend
+namespace Ludoop.Backend.Tiles
 {
 
     // Base class for tiles
@@ -12,8 +12,8 @@ namespace Ludoop.Backend
     {
         public readonly TileType TYPE;
         public Map Map;
-        private Tile NextTile;
-        private Tile PrevTile;
+        public Tile NextTile;
+        public Tile PrevTile;
         public int Index;
 
         /// <summary>
@@ -30,6 +30,8 @@ namespace Ludoop.Backend
             this.NextTile = this;
             this.PrevTile = this;
         }
+
+
 
         /// <summary>
         /// when a piece leaves the current tile the piece changes its current tile to the next tile (steps the tile once over) 
@@ -51,6 +53,7 @@ namespace Ludoop.Backend
         {
             return this.PrevTile;
         }
+        
 
         /// <summary>
         /// runs when the piece enters a tile

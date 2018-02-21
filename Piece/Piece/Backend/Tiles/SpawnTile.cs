@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ludoop.View;
 
-namespace Ludoop.Backend
+namespace Ludoop.Backend.Tiles
 {
     public class SpawnTile : Tile, ITeam
     {
