@@ -46,14 +46,19 @@ namespace Ludoop.Backend
         /// </summary>
         private List<Piece> piecesOnBoard;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <returns></returns>
         public Piece GetPiece(PieceType shape)
         {
             if (piecesOnBoard == null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("No Pieces on board");
             } else if (!piecesOnBoard.Exists(curpiece => curpiece.Type == shape))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("No such piece on board");
             }
 
             Piece piece = piecesOnBoard.Find(curpiece => curpiece.Type == shape);
