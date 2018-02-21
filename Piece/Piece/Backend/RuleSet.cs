@@ -29,7 +29,40 @@ namespace Ludoop.Backend
 
         public void PieceOnTile(Tile tile, Piece piece)
         {
-            
+            // GET TILEINFORMATION FROM MAP
+
+            switch (tile.TYPE)
+            {
+                case TileType.DEFAULT:
+                    {
+
+                        break;
+                    }
+                case TileType.END:
+                    {
+                        break;
+                    }
+                case TileType.EXIT:
+                    {
+                        break;
+                    }
+                case TileType.GLOBE:
+                    {
+                        break;
+                    }
+                case TileType.SPAWNPOINT:
+                    {
+                        break;
+                    }
+                case TileType.STAR:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
         }
     }
 }

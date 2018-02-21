@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ludoop.Backend.Tiles;
 
 namespace Ludoop.Backend
 {
@@ -84,7 +85,17 @@ namespace Ludoop.Backend
 
         public void CreatePiece(Player player, PieceType type)
         {
-            
+            Tile[] tilesOfType = resources.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
+
+            player.SpawnPiece(matchingTile);
+            Piece latestPiece = player.GetPieces().Last();
+            latestPiece.OnMove += Piece_OnMove;
+        }
+
+        private void Piece_OnMove(Piece piece, Tile previousTile, Tile newTile)
+        {
+            rules.PieceOnTile(newTile, piece);
         }
     }
 }

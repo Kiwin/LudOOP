@@ -66,6 +66,11 @@ namespace Ludoop.Backend
 
         }
 
+        public List<Piece> GetPieces()
+        {
+            return piecesOnBoard;
+        }
+
         public bool HasPieceOnBoard(PieceType shape)
         {
             if (!piecesOnBoard.Any(piece => piece.Type == shape))
