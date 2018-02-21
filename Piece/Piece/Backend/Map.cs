@@ -105,7 +105,8 @@ namespace Ludoop.Backend
             string strMap = tile.Map.Name;
             string strIdx = tile.Index.ToString();
             string strType = tile.TYPE.ToString();
-            string strInfo = strMap + ":" + strIdx + ":" + strType;
+            string strPos = String.Format("[x:{0},y:{1},w:{2},h:{3}]", tile.Actor.X, tile.Actor.Y, tile.Actor.Width, tile.Actor.Height);
+            string strInfo = strMap + ":" + strIdx + ":" + strType + ":" + strPos;
             if (tile is ITeam) //Check if should add Team Info.
             {
                 string strTeam = Enum.GetName(typeof(PlayerTeam), ((ITeam)tile).Team);
@@ -117,6 +118,26 @@ namespace Ludoop.Backend
                 strInfo += "\t->\t" + destinationTile.Map.GetTileInfo(destinationTile.Index);
             }
             return strInfo;
+        }
+        public Tile[] GetNextTilesOfType(TileType type)
+        {
+            List<Tile> tilesOfType = new List<Tile>();
+            foreach (Tile tile in this.Tiles)
+            {
+                if (tile.TYPE == type)
+                {
+                    tilesOfType.Add(tile);
+                }
+            }
+            return tilesOfType.ToArray();
+        }
+        public Tile GetFirstTileOfTeam(Tile[] tiles, PlayerTeam team) {
+            foreach (Tile tile in tiles) {
+                if (tile is ITeam && ((ITeam)tile).Team == team) {
+                    return tile;
+                }
+            }
+            return null;
         }
     }
 }

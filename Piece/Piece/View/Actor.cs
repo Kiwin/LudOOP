@@ -16,7 +16,12 @@ namespace Ludoop.View
         /// <param name="y">Actor's Y-Position.</param>
         /// <param name="w">Actor's Width.</param>
         /// <param name="h">Actor's Height.</param>
-        public Actor(float x = 0, float y = 0, float w = 0, float h = 0) { }
+        public Actor(float x = 0, float y = 0, float w = 0, float h = 0) {
+            this.X = x;
+            this.Y = y;
+            this.Width = w;
+            this.Height = h;
+        }
 
         public float X, Y, Width, Height;
 
