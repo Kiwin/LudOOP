@@ -12,13 +12,14 @@ namespace Ludoop.Backend
         private ResourceManager resources = new ResourceManager();
         private Player CurrentPlayer;
         private Dice Die;
+        private RuleSet rules;
 
         /// <summary>
         /// Initializes the Game Class
         /// </summary>
         /// <param name="players">Defines the Player classes to be added</param>
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
-        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie)
+        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
         {
             for (int i = 0; i <= players.Length; i++)
             {
@@ -28,6 +29,7 @@ namespace Ludoop.Backend
             Die = new Dice(sizeOfDie);
             resources.Initialize(piecesPerPlayer);
             resources.Board = new GameBoard();
+            this.rules = rules;
         }
 
         public void NextTurn()
@@ -76,6 +78,11 @@ namespace Ludoop.Backend
 
         //TODO: Check if pieces are already on tile and rules applying to such 
         public void MovePiece(Piece piece, int steps)
+        {
+            
+        }
+
+        public void CreatePiece(Player player, PieceType type)
         {
             
         }

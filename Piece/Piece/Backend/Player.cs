@@ -46,14 +46,19 @@ namespace Ludoop.Backend
         /// </summary>
         private List<Piece> piecesOnBoard;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <returns></returns>
         public Piece GetPiece(PieceType shape)
         {
             if (piecesOnBoard == null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("No Pieces on board");
             } else if (!piecesOnBoard.Exists(curpiece => curpiece.Type == shape))
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("No such piece on board");
             }
 
             Piece piece = piecesOnBoard.Find(curpiece => curpiece.Type == shape);
@@ -91,7 +96,8 @@ namespace Ludoop.Backend
                 if (!piecesOnBoard.Any(piece => piece.Type == shape))
                 {
                     // TODO: Currently not implemented due to Piece being abstract and needs subclasses
-                    piecesOnBoard.Add(new Piece(Team, shape, tile));
+                    Piece piece = new Piece(Team, shape, tile);
+                    piecesOnBoard.Add(piece);
                     PieceBuffer += PieceBuffer - 1;
                 }
             }
