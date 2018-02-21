@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Ludoop.View;
 
-namespace Ludoop.Backend
+namespace Ludoop.Backend.Tiles
 {
     /// <summary>
     /// Class representing a default tile.

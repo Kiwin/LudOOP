@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ludoop.Backend
+namespace Ludoop.Backend.Tiles
 {
     /// <summary>
     /// types of Tiles on board
