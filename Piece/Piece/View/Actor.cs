@@ -20,11 +20,17 @@ namespace Ludoop.View
 
         public float X, Y, Width, Height;
 
+        /// <summary>
+        /// Method for drawing actor using it's own members.
+        /// </summary>
         public void Draw()
         {
             Draw(this.X, this.Y, this.Width, this.Height);
         }
 
+        /// <summary>
+        /// Method for drawing actor.
+        /// </summary>
         public abstract void Draw(float x, float y, float w, float h);
     }
 }
