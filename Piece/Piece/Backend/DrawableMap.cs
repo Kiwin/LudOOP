@@ -24,6 +24,12 @@ namespace Ludoop.Backend
             }
         }
 
+
+        public void SetTilePosition(int tileIndex, int x, int y) {
+            TilePositions[tileIndex].X = x;
+            TilePositions[tileIndex].Y = y;
+        }
+
         /// <summary>
         /// Method for applying changes in the TilePositions array to the map tiles' actors.
         /// </summary>
