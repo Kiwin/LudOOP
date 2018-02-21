@@ -57,24 +57,9 @@ namespace Ludoop.Backend
                 submaps[i].LastTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i)); //Create end tiles.
             }
 
-            /*
+            
             //Set visual tile positions of the shared map
-            for (int i = 0; i < 4; i++)
-            { //Map section
-                double angleX = Math.Sin((i + 3) * Math.PI);
-                double angleY = Math.Cos((i + 3) * Math.PI);
-                int offsetX = (int)(13 + angleX * 12);
-                int offsetY = (int)(13 + angleY * 12);
-                for (int j = 0; j < 6; j++)
-                { //Section width
-                    for (int k = 0; k < 2; k++)
-                    { //Section height
-
-                    }
-                }
-            }
-            */
-
+ 
             //Red section
             sharedMap.SetTilePosition(46, 8, 9);
             sharedMap.SetTilePosition(47, 8, 10);
@@ -142,6 +127,8 @@ namespace Ludoop.Backend
             sharedMap.SetTilePosition(43, 11, 8);
             sharedMap.SetTilePosition(44, 10, 8);
             sharedMap.SetTilePosition(45, 9, 8);
+
+            sharedMap.ApplyPositions();
 
             // Debug Code 
             Console.WriteLine(String.Join("\n", sharedMap.GetTilesInfo()));
