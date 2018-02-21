@@ -1,12 +1,13 @@
 ﻿using Ludoop.Backend;
 using Ludoop.Backend.Tiles;
+using Ludoop.View;
 using System;
 
 namespace Ludoop.Backend
 {
     public enum PieceType { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
 
-    public class Piece : ITeam
+    public class Piece : ITeam, IDraw
     {
 
         public Tile CurrentTile { get; set; }
@@ -23,9 +24,11 @@ namespace Ludoop.Backend
             this.Type = type;
             this.CurrentTile = tile;
             this.Team = team;
+            this.Actor = new ConsolePieceActor(this);
         }
 
         public PlayerTeam Team { get; set; }
+        public Actor Actor { get; set; }
 
         /// <summary>
         /// Moves the piece a set amount of steps

@@ -7,14 +7,15 @@ namespace Ludoop.View
 {
     public abstract class ConsoleActor : Actor
     {
+
         /// <summary>
-        /// 
+        /// Class Constructor.
         /// </summary>
         /// <param name="x">Actor's X Tile position.</param>
         /// <param name="y">Actor's Y Tile position.</param>
         /// <param name="tileWidth">Width of a tile.</param>
         /// <param name="tileHeight">Height of a tile.</param>
-        public ConsoleActor(float x = 0, float y = 0, float tileWidth = 1, float tileHeight = 1) : base(x, y, tileWidth, tileHeight)
+        public ConsoleActor(int x = 0, int y = 0, int tileWidth = 1, int tileHeight = 1, int tileSpacingX = 0, int tileSpacingY = 0) : base(x, y, tileWidth, tileHeight)
         {
 
         }
@@ -32,6 +33,7 @@ namespace Ludoop.View
             {
                 Console.ForegroundColor = GetForegroundColor();
                 Console.BackgroundColor = GetBackgroundColor();
+
                 for (int j = 0; j < (int)h; j++)
                 {
                     Console.SetCursorPosition((int)(x * w + i), (int)(y * h + j));
@@ -40,7 +42,7 @@ namespace Ludoop.View
             }
         }
 
-        /// <summary>
+        /// <summary> hej Kiwin
         /// Method for getting the symbol representing actor.
         /// </summary>
         /// <returns>Character representing actor.</returns>

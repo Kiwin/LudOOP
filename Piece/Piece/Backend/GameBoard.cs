@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ludoop.Backend
 {
-    public enum MapSection { SHARED, RED, BLUE, YELLOW, GREEN };
+    public enum MapSection { SHARED = 0, RED, BLUE, YELLOW, GREEN };
     public enum MapSectionSize { SHARED = 52, RED = 4, BLUE = 4, YELLOW = 4, GREEN = 4 };
     public enum MapSectionLoop { SHARED = 1, RED = 0, BLUE = 0, YELLOW = 0, GREEN = 0 };
     public class GameBoard
@@ -47,7 +47,7 @@ namespace Ludoop.Backend
             greenMap.Name = "GreenMap";
 
             // Defines Team specific maps
-            DrawableMap[] submaps = { redMap, blueMap, yellowMap, greenMap };
+            DrawableMap[] submaps = { redMap, greenMap, yellowMap, blueMap };
             // creates Team Special tiles on the shared map
             for (int i = 0; i < submaps.Length; i++)
             {
@@ -57,9 +57,15 @@ namespace Ludoop.Backend
                 submaps[i].LastTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i)); //Create end tiles.
             }
 
-            
-            //Set visual tile positions of the shared map
- 
+            SetPosition(5,5);
+
+
+
+        }
+
+        public void SetPosition(int xOffset, int yOffset) {
+            //SHARED MAP
+            DrawableMap sharedMap = maps[(int)MapSection.SHARED];
             //Red section
             sharedMap.SetTilePosition(46, 8, 9);
             sharedMap.SetTilePosition(47, 8, 10);
@@ -128,13 +134,17 @@ namespace Ludoop.Backend
             sharedMap.SetTilePosition(44, 10, 8);
             sharedMap.SetTilePosition(45, 9, 8);
 
+            foreach(IntVector2D tilePos in sharedMap.TilePositions) {
+                tilePos.X += xOffset;
+                tilePos.Y += yOffset;
+            }
+
             sharedMap.ApplyPositions();
+        }
 
+        public void Debug() {
             // Debug Code 
-            Console.WriteLine(String.Join("\n", sharedMap.GetTilesInfo()));
-            Array.ForEach(submaps, (map) => { Console.WriteLine(String.Join("\n", map.GetTilesInfo())); });
-            Console.ReadKey();
-
+            Array.ForEach(maps, (map) => { Console.WriteLine(String.Join("\n", map.GetTilesInfo())); });
         }
 
         /// <summary>

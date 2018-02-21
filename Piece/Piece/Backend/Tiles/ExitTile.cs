@@ -12,6 +12,7 @@ namespace Ludoop.Backend.Tiles
         {
             this.DestinationTile = destinationTile;
             this.Team = team;
+            this.Actor = new ConsoleTileActor(this);
         }
 
         public Tile DestinationTile { get; set; }

@@ -15,7 +15,7 @@ namespace Ludoop.Backend.Tiles
         /// </summary>
         /// <param name="map">Map which the tile is within.</param>
         public DefaultTile(Map map, int index) : base(TileType.DEFAULT, map, index) {
-
+            this.Actor = new ConsoleTileActor(this);
         }
 
         /// <summary>
