@@ -37,7 +37,8 @@ namespace Ludoop.Backend
             if (currentPlayerIndex >= resources.GetPlayers().Count)
             {
                 CurrentPlayer = resources.GetPlayers().First();
-            } else
+            }
+            else
             {
                 CurrentPlayer = resources.GetPlayers()[currentPlayerIndex + 1];
             }
@@ -64,8 +65,10 @@ namespace Ludoop.Backend
             CurrentPlayer = luckiestPlayer;
         }
 
-        public static ConsoleColor GetTeamColor(PlayerTeam team) {
-            switch (team) {
+        public static ConsoleColor GetTeamColor(PlayerTeam team)
+        {
+            switch (team)
+            {
                 case PlayerTeam.BLUE: { return ConsoleColor.Blue; }
                 case PlayerTeam.GREEN: { return ConsoleColor.Green; }
                 case PlayerTeam.RED: { return ConsoleColor.Red; }
@@ -77,11 +80,11 @@ namespace Ludoop.Backend
         //TODO: Check if pieces are already on tile and rules applying to such 
         public void MovePiece(Piece piece, int steps)
         {
-            
+
         }
     }
 }
 
-                
+
 
 
