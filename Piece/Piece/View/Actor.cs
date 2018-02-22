@@ -24,7 +24,7 @@ namespace Ludoop.View
         }
 
         public float X, Y, Width, Height;
-
+        public readonly static NullActor NullActor = new NullActor();
         /// <summary>
         /// Method for drawing actor using it's own members.
         /// </summary>

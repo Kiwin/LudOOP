@@ -17,7 +17,7 @@ namespace Ludoop.Backend
         /// <summary>
         /// Array of all gameboard maps.
         /// </summary>
-        public DrawableMap[] maps;
+        public DrawableMap[] Maps;
 
         /// <summary>
         /// Class Constructor.
@@ -33,14 +33,14 @@ namespace Ludoop.Backend
         private void initializeMaps()
         {
             //Instantiate map array.
-            maps = new DrawableMap[5];
+            Maps = new DrawableMap[5];
 
             //Initialize maps
-            DrawableMap sharedMap = (maps[(int)MapSection.SHARED] = new DrawableMap(size: (int)MapSectionSize.SHARED, isLoopMap: true));
-            DrawableMap redMap = (maps[(int)MapSection.RED] = new DrawableMap(size: (int)MapSectionSize.RED, isLoopMap: false));
-            DrawableMap blueMap = (maps[(int)MapSection.BLUE] = new DrawableMap(size: (int)MapSectionSize.BLUE, isLoopMap: false));
-            DrawableMap yellowMap = (maps[(int)MapSection.YELLOW] = new DrawableMap(size: (int)MapSectionSize.YELLOW, isLoopMap: false));
-            DrawableMap greenMap = (maps[(int)MapSection.GREEN] = new DrawableMap(size: (int)MapSectionSize.GREEN, isLoopMap: false));
+            DrawableMap sharedMap = (Maps[(int)MapSection.SHARED] = new DrawableMap(size: (int)MapSectionSize.SHARED, isLoopMap: true));
+            DrawableMap redMap = (Maps[(int)MapSection.RED] = new DrawableMap(size: (int)MapSectionSize.RED, isLoopMap: false));
+            DrawableMap blueMap = (Maps[(int)MapSection.BLUE] = new DrawableMap(size: (int)MapSectionSize.BLUE, isLoopMap: false));
+            DrawableMap yellowMap = (Maps[(int)MapSection.YELLOW] = new DrawableMap(size: (int)MapSectionSize.YELLOW, isLoopMap: false));
+            DrawableMap greenMap = (Maps[(int)MapSection.GREEN] = new DrawableMap(size: (int)MapSectionSize.GREEN, isLoopMap: false));
 
             sharedMap.Name = "SharedMap";
             redMap.Name = "RedMap";
@@ -50,20 +50,36 @@ namespace Ludoop.Backend
 
             // Defines Team specific maps
             DrawableMap[] submaps = { redMap, greenMap, yellowMap, blueMap };
+            
             // creates Team Special tiles on the shared map
             for (int i = 0; i < submaps.Length; i++)
             {
                 int idx = i * ((int)(MapSectionSize.SHARED) / 4);
-                sharedMap.SetTile(idx, new ExitTile(sharedMap, idx, submaps[i].FirstTile, (PlayerTeam)(i))); //Create exit tiles.
-                sharedMap.SetTile(idx + 2, new SpawnTile(sharedMap, idx + 2, (PlayerTeam)(i))); //Create spawn tiles.
-                submaps[i].LastTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i)); //Create end tiles.
+
+                Tile newTile = new ExitTile(sharedMap, idx, submaps[i].FirstTile, (PlayerTeam)(i), Actor.NullActor);
+                sharedMap.SetTile(idx, newTile); //Create exit tiles.
+
+                newTile = new SpawnTile(sharedMap, idx + 2, (PlayerTeam)(i), Actor.NullActor);
+                sharedMap.SetTile(idx + 2, newTile); //Create spawn tiles.
+
+                newTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i), Actor.NullActor);
+                submaps[i].LastTile = newTile; //Create end tiles.
+            }
+
+            // Set tile actors
+            foreach (Map map in Maps)
+            {
+                foreach (Tile tile in map.Tiles)
+                {
+                    tile.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), tile);
+                }
             }
         }
 
         public void SetPosition(int xOffset, int yOffset, int spacingX = 0, int spacingY = 0)
         {
             //SHARED MAP
-            DrawableMap sharedMap = maps[(int)MapSection.SHARED];
+            DrawableMap sharedMap = Maps[(int)MapSection.SHARED];
             //Red section
             sharedMap.SetTilePosition(46, 8, 9);
             sharedMap.SetTilePosition(47, 8, 10);
@@ -133,34 +149,34 @@ namespace Ludoop.Backend
             sharedMap.SetTilePosition(45, 9, 8);
 
             ///RED MAP
-            DrawableMap redMap = maps[(int)MapSection.RED];
+            DrawableMap redMap = Maps[(int)MapSection.RED];
             redMap.SetTilePosition(0, 7, 13);
             redMap.SetTilePosition(1, 7, 12);
             redMap.SetTilePosition(2, 7, 11);
             redMap.SetTilePosition(3, 7, 10);
 
             ///GREEN MAP
-            DrawableMap greenMap = maps[(int)MapSection.GREEN];
+            DrawableMap greenMap = Maps[(int)MapSection.GREEN];
             greenMap.SetTilePosition(0, 1, 7);
             greenMap.SetTilePosition(1, 2, 7);
             greenMap.SetTilePosition(2, 3, 7);
             greenMap.SetTilePosition(3, 4, 7);
 
             ///YELLOW MAP
-            DrawableMap yellowMap = maps[(int)MapSection.YELLOW];
+            DrawableMap yellowMap = Maps[(int)MapSection.YELLOW];
             yellowMap.SetTilePosition(0, 7, 1);
             yellowMap.SetTilePosition(1, 7, 2);
             yellowMap.SetTilePosition(2, 7, 3);
             yellowMap.SetTilePosition(3, 7, 4);
 
             ///BLUE MAP
-            DrawableMap blueMap = maps[(int)MapSection.BLUE];
+            DrawableMap blueMap = Maps[(int)MapSection.BLUE];
             blueMap.SetTilePosition(0, 13, 7);
             blueMap.SetTilePosition(1, 12, 7);
             blueMap.SetTilePosition(2, 11, 7);
             blueMap.SetTilePosition(3, 10, 7);
 
-            foreach (DrawableMap map in maps)
+            foreach (DrawableMap map in Maps)
             {
                 map.ApplyPositions();
             }
@@ -169,7 +185,7 @@ namespace Ludoop.Backend
         public void Debug()
         {
             // Debug Code 
-            Array.ForEach(maps, (map) => { Console.WriteLine(String.Join("\n", map.GetTilesInfo())); });
+            Array.ForEach(Maps, (map) => { Console.WriteLine(String.Join("\n", map.GetTilesInfo())); });
         }
 
         /// <summary>
@@ -179,7 +195,7 @@ namespace Ludoop.Backend
         public void Draw(float x, float y, float w, float h)
         {
             SetPosition((int)x,(int)y,(int)w,(int)h);
-            foreach (DrawableMap map in maps)
+            foreach (DrawableMap map in Maps)
             {
                 foreach (Tile tile in map.Tiles)
                 {

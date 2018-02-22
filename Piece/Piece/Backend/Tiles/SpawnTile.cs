@@ -19,7 +19,6 @@ namespace Ludoop.Backend.Tiles
         public SpawnTile(Map map, int index, PlayerTeam team, Actor actor) : base(TileType.SPAWNPOINT, map, index, actor)
         {
             this.Team = team;
-            this.Actor = new ConsoleTileActor(this);
         }
 
         public override Actor Actor { get; set; }

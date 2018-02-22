@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ludoop.Backend.Tiles;
+using Ludoop.View;
 
 namespace Ludoop.Backend
 {
@@ -14,6 +15,7 @@ namespace Ludoop.Backend
         private Player CurrentPlayer;
         private Dice Die;
         private RuleSet rules;
+        private static ConsoleActorMatrix matrix;
 
         /// <summary>
         /// Class Constructor.
@@ -22,6 +24,7 @@ namespace Ludoop.Backend
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
         public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
         {
+            matrix = new ConsoleActorMatrix();
             for (int i = 0; i <= players.Length; i++)
             {
                 resources.AddPlayer(players[i]);
@@ -88,8 +91,8 @@ namespace Ludoop.Backend
 
         public void CreatePiece(Player player, PieceType type)
         {
-            Tile[] tilesOfType = resources.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
-            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType, player.Team);
+            Tile[] tilesOfType = resources.Board.Maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = resources.Board.Maps[0].GetFirstTileOfTeam(tilesOfType, player.Team);
 
             player.SpawnPiece(matchingTile);
             Piece latestPiece = player.GetPieces().Last();
@@ -99,6 +102,10 @@ namespace Ludoop.Backend
         private void Piece_OnMove(Piece piece, Tile previousTile, Tile newTile)
         {
             rules.PieceOnTile(newTile, piece);
+        }
+
+        public static ConsoleActorMatrix GetConsoleActorMatrix() {
+            return matrix;
         }
     }
 }
