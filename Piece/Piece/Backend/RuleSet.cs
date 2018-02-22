@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ludoop.Backend
 {
-    class RuleSet
+    public class RuleSet
     {
         public enum RuleIdentifier { SAFE, JUMP, RETURN, SPAWN};
         private GameBoard board;

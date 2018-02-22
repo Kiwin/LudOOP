@@ -8,7 +8,7 @@ namespace Ludoop.Backend.Tiles
 {
 
     // Base class for tiles
-    public abstract class Tile : IDraw
+    public abstract class Tile : IAct
     {
         public readonly TileType TYPE;
         public Map Map;
@@ -22,11 +22,12 @@ namespace Ludoop.Backend.Tiles
         /// <param name="type">the type of the tile defined in ITile</param>
         /// <param name="map">defines the Map the tile is on</param>
         /// <param name="index">Defines the index the tile is on</param>
-        public Tile(TileType type, Map map, int index)
+        public Tile(TileType type, Map map, int index, Actor actor)
         {
             this.TYPE = type;
             this.Map = map;
             this.Index = index;
+            this.Actor = actor;
             this.NextTile = this;
             this.PrevTile = this;
         }

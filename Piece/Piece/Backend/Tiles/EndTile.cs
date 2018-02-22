@@ -10,7 +10,7 @@ namespace Ludoop.Backend.Tiles
 {
     class EndTile : Tile, ITeam
     {
-        public EndTile(Map map, int index, PlayerTeam team) : base(TileType.END, map, index) {
+        public EndTile(Map map, int index, PlayerTeam team, Actor actor) : base(TileType.END, map, index, actor) {
             this.Team = team;
             this.Actor = new ConsoleTileActor(this);
         }

@@ -5,26 +5,24 @@ using System;
 
 namespace Ludoop.Backend
 {
-    public enum PieceType { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
-
-    public class Piece : ITeam, IDraw
+    public class Piece : ITeam, IAct
     {
 
         public Tile CurrentTile { get; set; }
         public Tile LastTile { get; set; }
-        public PieceType Type;
+        public PieceType Type { get; set; }
 
         /// <summary>
         /// Constructor for the piece class
         /// </summary>
         /// <param name="type">the type of piece works along with the current team of the piece as an ID</param>
         /// <param name="tile">defines the current tile the piece is on</param>
-        public Piece(PlayerTeam team, PieceType type, Tile tile)
+        public Piece(PlayerTeam team, PieceType type, Tile tile, Actor actor)
         {
             this.Type = type;
             this.CurrentTile = tile;
             this.Team = team;
-            this.Actor = new ConsolePieceActor(this);
+            this.Actor = actor;
         }
 
         public PlayerTeam Team { get; set; }

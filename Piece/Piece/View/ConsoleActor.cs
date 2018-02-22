@@ -11,14 +11,16 @@ namespace Ludoop.View
         /// <summary>
         /// Class Constructor.
         /// </summary>
-        /// <param name="x">Actor's X Tile position.</param>
-        /// <param name="y">Actor's Y Tile position.</param>
-        /// <param name="tileWidth">Width of a tile.</param>
-        /// <param name="tileHeight">Height of a tile.</param>
-        public ConsoleActor(int x = 0, int y = 0, int tileWidth = 1, int tileHeight = 1, int tileSpacingX = 0, int tileSpacingY = 0) : base(x, y, tileWidth, tileHeight)
+        /// <param name="row">Row position in the console.</param>
+        /// <param name="column">Column position in the console.</param>
+        /// <param name="width">Amount of rows to fill.</param>
+        /// <param name="height">Amount of columns to fill.</param>
+        public ConsoleActor(ConsoleActorMatrix matrix, int row = 0, int column = 0, int width = 1, int height = 1) : base(row, column, width, height)
         {
-
+            this.Matrix = matrix;
         }
+
+        public ConsoleActorMatrix Matrix { get; set; }
 
         /// <summary>
         /// Method for drawing actor.
@@ -36,7 +38,7 @@ namespace Ludoop.View
 
                 for (int j = 0; j < (int)h; j++)
                 {
-                    Console.SetCursorPosition((int)(x * w + i), (int)(y * h + j));
+                    Console.SetCursorPosition((int)(Matrix.RowOffset + x * (w + Matrix.RowSpacing) + i), (int)(Matrix.ColumnOffset + y * (h + Matrix.ColumnSpacing) + j));
                     Console.Write(GetSymbol());
                 }
             }

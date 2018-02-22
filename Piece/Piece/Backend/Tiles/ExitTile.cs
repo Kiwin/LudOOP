@@ -8,7 +8,7 @@ namespace Ludoop.Backend.Tiles
     public class ExitTile : Tile, ITeam
     {
 
-        public ExitTile(Map map, int index, Tile destinationTile, PlayerTeam team) : base(TileType.EXIT, map, index)
+        public ExitTile(Map map, int index, Tile destinationTile, PlayerTeam team, Actor actor) : base(TileType.EXIT, map, index, actor)
         {
             this.DestinationTile = destinationTile;
             this.Team = team;
@@ -19,13 +19,15 @@ namespace Ludoop.Backend.Tiles
         public override Actor Actor { get; set; }
         public PlayerTeam Team { get; set; }
 
-        public override void onPieceLeave(Piece piece, bool isForward, bool isLast)
+        public override Tile GetNextTile(Piece piece)
         {
+            if (piece.Team == this.Team)
             {
-                if (isLast && piece.Team == this.Team)
-                {
-                    piece.CurrentTile = this.DestinationTile;
-                }
+                return DestinationTile;
+            }
+            else
+            {
+                return NextTile;
             }
         }
     }

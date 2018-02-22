@@ -102,5 +102,10 @@ namespace Ludoop.Backend
                 }
             }
         }
+
+        public Piece[] GetPieces()
+        {
+            return this.piecesOnBoard.ToArray();
+        }
     }
 }

@@ -9,12 +9,6 @@ namespace Ludoop.View
     /// </summary>
     public interface IDraw
     {
-        /// <summary>
-        /// Actor Getter and Setter.
-        /// </summary>
-        Actor Actor{
-            get;
-            set;
-        }
+        void Draw(float x, float y, float w, float h);
     }
 }

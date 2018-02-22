@@ -14,7 +14,7 @@ namespace Ludoop.View
         /// Class Constructor.
         /// </summary>
         /// <param name="tile">Tile of actor.</param>
-        public ConsoleTileActor(Tile tile, int x = 0, int y = 0, int w = 2, int h = 1) : base(x, y, w, h)
+        public ConsoleTileActor(ConsoleActorMatrix matrix, Tile tile, int x = 0, int y = 0, int w = 1, int h = 1) : base(matrix, x, y, w, h)
         {
             this.tile = tile;
         }
@@ -28,7 +28,7 @@ namespace Ludoop.View
             switch (tile.TYPE)
             {
                 case TileType.DEFAULT:
-                    { return (tile.Actor.X+tile.Actor.Y)%2 == 0 ? '-' : '|'; }
+                    { return (tile.Actor.X + tile.Actor.Y) % 2 == 0 ? '-' : '|'; }
                 case TileType.END:
                     { return '='; }
                 case TileType.EXIT:

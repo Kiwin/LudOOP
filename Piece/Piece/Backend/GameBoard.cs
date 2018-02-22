@@ -1,4 +1,5 @@
 ﻿using Ludoop.Backend.Tiles;
+using Ludoop.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace Ludoop.Backend
     public enum MapSection { SHARED = 0, RED, GREEN, BLUE, YELLOW };
     public enum MapSectionSize { SHARED = 52, RED = 4, BLUE = 4, YELLOW = 4, GREEN = 4 };
     public enum MapSectionLoop { SHARED = 1, RED = 0, BLUE = 0, YELLOW = 0, GREEN = 0 };
-    public class GameBoard
+
+    public class GameBoard : IDraw
     {
         /// <summary>
         /// Array of all gameboard maps.
@@ -56,11 +58,6 @@ namespace Ludoop.Backend
                 sharedMap.SetTile(idx + 2, new SpawnTile(sharedMap, idx + 2, (PlayerTeam)(i))); //Create spawn tiles.
                 submaps[i].LastTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i)); //Create end tiles.
             }
-
-            SetPosition(1, 1, 1, 1);
-
-
-
         }
 
         public void SetPosition(int xOffset, int yOffset, int spacingX = 0, int spacingY = 0)
@@ -165,13 +162,6 @@ namespace Ludoop.Backend
 
             foreach (DrawableMap map in maps)
             {
-                foreach (IntVector2D tilePos in map.TilePositions)
-                {
-                    tilePos.X *= (spacingX + 1);
-                    tilePos.Y *= (spacingY + 1);
-                    tilePos.X += xOffset;
-                    tilePos.Y += yOffset;
-                }
                 map.ApplyPositions();
             }
         }
@@ -185,8 +175,10 @@ namespace Ludoop.Backend
         /// <summary>
         /// Method for drawing all gameboard maps.
         /// </summary>
-        public void Draw()
+
+        public void Draw(float x, float y, float w, float h)
         {
+            SetPosition((int)x,(int)y,(int)w,(int)h);
             foreach (DrawableMap map in maps)
             {
                 foreach (Tile tile in map.Tiles)

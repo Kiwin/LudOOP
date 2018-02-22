@@ -16,7 +16,7 @@ namespace Ludoop.Backend
         private RuleSet rules;
 
         /// <summary>
-        /// Initializes the Game Class
+        /// Class Constructor.
         /// </summary>
         /// <param name="players">Defines the Player classes to be added</param>
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
@@ -89,7 +89,7 @@ namespace Ludoop.Backend
         public void CreatePiece(Player player, PieceType type)
         {
             Tile[] tilesOfType = resources.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
-            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
+            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType, player.Team);
 
             player.SpawnPiece(matchingTile);
             Piece latestPiece = player.GetPieces().Last();
