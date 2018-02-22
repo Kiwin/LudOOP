@@ -31,8 +31,6 @@ namespace Ludoop.Backend.Tiles
             this.PrevTile = this;
         }
 
-
-
         /// <summary>
         /// when a piece leaves the current tile the piece changes its current tile to the next tile (steps the tile once over) 
         /// </summary>
@@ -53,7 +51,7 @@ namespace Ludoop.Backend.Tiles
         {
             return this.PrevTile;
         }
-        
+
 
         /// <summary>
         /// runs when the piece enters a tile

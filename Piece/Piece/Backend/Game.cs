@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ludoop.Backend.Tiles;
 
 namespace Ludoop.Backend
 {
@@ -12,13 +13,14 @@ namespace Ludoop.Backend
         private ResourceManager resources = new ResourceManager();
         private Player CurrentPlayer;
         private Dice Die;
+        private RuleSet rules;
 
         /// <summary>
         /// Initializes the Game Class
         /// </summary>
         /// <param name="players">Defines the Player classes to be added</param>
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
-        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie)
+        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
         {
             for (int i = 0; i <= players.Length; i++)
             {
@@ -28,6 +30,7 @@ namespace Ludoop.Backend
             Die = new Dice(sizeOfDie);
             resources.Initialize(piecesPerPlayer);
             resources.Board = new GameBoard();
+            this.rules = rules;
         }
 
         public void NextTurn()
@@ -81,6 +84,21 @@ namespace Ludoop.Backend
         public void MovePiece(Piece piece, int steps)
         {
 
+        }
+
+        public void CreatePiece(Player player, PieceType type)
+        {
+            Tile[] tilesOfType = resources.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
+
+            player.SpawnPiece(matchingTile);
+            Piece latestPiece = player.GetPieces().Last();
+            latestPiece.OnMove += Piece_OnMove;
+        }
+
+        private void Piece_OnMove(Piece piece, Tile previousTile, Tile newTile)
+        {
+            rules.PieceOnTile(newTile, piece);
         }
     }
 }
