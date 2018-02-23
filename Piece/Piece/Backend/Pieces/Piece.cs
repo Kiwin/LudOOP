@@ -13,6 +13,9 @@ namespace Ludoop.Backend
         public Tile CurrentTile { get; set; }
         public Tile LastTile { get; set; }
         public PieceType Type;
+        public bool IsFinished = false;
+        public PlayerTeam Team { get; set; }
+        public Actor Actor { get; set; }
 
         /// <summary>
         /// Constructor for the piece class
@@ -27,15 +30,13 @@ namespace Ludoop.Backend
             this.Actor = new ConsolePieceActor(this);
         }
 
-        public PlayerTeam Team { get; set; }
-        public Actor Actor { get; set; }
-
         /// <summary>
         /// Moves the piece a set amount of steps
         /// </summary>
         /// <param name="steps">the amount of steps to move</param>
         public void Move(int steps)
         {
+            // kind of misleading, is only used with the onmove event to 
             Tile previousTile = CurrentTile;
 
             // Determines whether the piece is moving backwards or forwards
@@ -65,7 +66,15 @@ namespace Ludoop.Backend
             OnMove(this, oldTile, CurrentTile);
         }
 
+        public void RemovePiece()
+        {
+            OnRemove(this);
+        }
+
         public delegate void PieceMovedHandler(Piece piece, Tile previousTile, Tile newTile);
         public event PieceMovedHandler OnMove;
+
+        public delegate void OnRemovedHandler(Piece piece);
+        public event OnRemovedHandler OnRemove;
     }
 }

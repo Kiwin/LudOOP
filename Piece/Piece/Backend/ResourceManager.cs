@@ -5,19 +5,19 @@ using System.Linq;
 
 namespace Ludoop.Backend
 {
-    class ResourceManager
+    static class ResourceManager
     {
 
         /// <summary>
         /// Contains the Ludo Board class
         /// </summary>
-        private GameBoard board;
+        private static GameBoard board;
 
         
-        public GameBoard Board
+        public static GameBoard Board
         {
             get { return board; }
-            set { this.board = value; }
+            set { board = value; }
         }
 
         // TODO: Loop through all players and add them all and get pieces for them all.
@@ -28,7 +28,7 @@ namespace Ludoop.Backend
         /// Initializes the resources
         /// </summary>
         /// <param name="piecesPerPlayer">the amount of pieces every player is able to have</param>
-        public void Initialize(int piecesPerPlayer)
+        public static void Initialize(int piecesPerPlayer)
         {
             // assigns every players piecebuffer with the correct amount of pieces
             for (int i = 0; i <= players.Count; i++)
@@ -40,13 +40,13 @@ namespace Ludoop.Backend
         /// <summary>
         /// Contains all players in the game
         /// </summary>
-        private List<Player> players;
+        private static List<Player> players;
 
         /// <summary>
         /// Gets all the players in the game
         /// </summary>
         /// <returns>returns List<Player></returns>
-        public List<Player> GetPlayers()
+        public static List<Player> GetPlayers()
         {
             return players;
         }
@@ -55,7 +55,7 @@ namespace Ludoop.Backend
         /// Adds a new player to the game
         /// </summary>
         /// <param name="player">Player object containing the new player</param>
-        public void AddPlayer(Player player)
+        public static void AddPlayer(Player player)
         {
             players.Add(player);
         }
@@ -64,7 +64,7 @@ namespace Ludoop.Backend
         ///  Removes a specific player from the game (needs to be the same or an exact copy of the object)
         /// </summary>
         /// <param name="player">the player to be removed</param>
-        public void RemovePlayer(Player player)
+        public static void RemovePlayer(Player player)
         {
             players.Remove(player);
         }
@@ -73,7 +73,7 @@ namespace Ludoop.Backend
         /// Removes a specific player from their name
         /// </summary>
         /// <param name="name">the name of the player</param>
-        public void RemovePlayer(string name)
+        public static void RemovePlayer(string name)
         {
             // loops through all players and finds the first with the same name as the parameter and then removes it
             Player player = players.Find(cur => cur.Name == name);

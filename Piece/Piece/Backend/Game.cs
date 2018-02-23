@@ -10,7 +10,6 @@ namespace Ludoop.Backend
     // Game Implements general game flow and handles how the game works INCOMPLETE
     public class Game
     {
-        private ResourceManager resources = new ResourceManager();
         private Player CurrentPlayer;
         private Dice Die;
         private RuleSet rules;
@@ -24,36 +23,36 @@ namespace Ludoop.Backend
         {
             for (int i = 0; i <= players.Length; i++)
             {
-                resources.AddPlayer(players[i]);
+                ResourceManager.AddPlayer(players[i]);
             }
 
             Die = new Dice(sizeOfDie);
-            resources.Initialize(piecesPerPlayer);
-            resources.Board = new GameBoard();
+            ResourceManager.Initialize(piecesPerPlayer);
+            ResourceManager.Board = new GameBoard();
             this.rules = rules;
         }
 
         public void NextTurn()
         {
-            int currentPlayerIndex = resources.GetPlayers().IndexOf(CurrentPlayer);
+            int currentPlayerIndex = ResourceManager.GetPlayers().IndexOf(CurrentPlayer);
 
-            if (currentPlayerIndex >= resources.GetPlayers().Count)
+            if (currentPlayerIndex >= ResourceManager.GetPlayers().Count)
             {
-                CurrentPlayer = resources.GetPlayers().First();
+                CurrentPlayer = ResourceManager.GetPlayers().First();
             } else
             {
-                CurrentPlayer = resources.GetPlayers()[currentPlayerIndex + 1];
+                CurrentPlayer = ResourceManager.GetPlayers()[currentPlayerIndex + 1];
             }
         }
 
         public void DetermineFirstPlayer()
         {
             int LargestValue = 0;
-            Player luckiestPlayer = resources.GetPlayers().First();
+            Player luckiestPlayer = ResourceManager.GetPlayers().First();
 
-            for (int i = 0; i < resources.GetPlayers().Count; i++)
+            for (int i = 0; i < ResourceManager.GetPlayers().Count; i++)
             {
-                Player curPlayer = resources.GetPlayers()[i];
+                Player curPlayer = ResourceManager.GetPlayers()[i];
 
                 int roll = Die.Roll();
 
@@ -85,8 +84,8 @@ namespace Ludoop.Backend
 
         public void CreatePiece(Player player, PieceType type)
         {
-            Tile[] tilesOfType = resources.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
-            Tile matchingTile = resources.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
+            Tile[] tilesOfType = ResourceManager.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = ResourceManager.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
 
             player.SpawnPiece(matchingTile);
             Piece latestPiece = player.GetPieces().Last();

@@ -23,6 +23,8 @@ namespace Ludoop.Backend
             this.Team = team;
         }
 
+        public int PiecesInEnd = 0;
+
         /// <summary>
         /// Container for the name of the player
         /// </summary>
@@ -66,6 +68,16 @@ namespace Ludoop.Backend
 
         }
 
+        private void RemovePiece(Piece piece)
+        {
+            piecesOnBoard.Remove(piece);
+        }
+
+        public List<Piece> GetPieces()
+        {
+            return piecesOnBoard;
+        }
+
         public bool HasPieceOnBoard(PieceType shape)
         {
             if (!piecesOnBoard.Any(piece => piece.Type == shape))
@@ -98,6 +110,7 @@ namespace Ludoop.Backend
                     // TODO: Currently not implemented due to Piece being abstract and needs subclasses
                     Piece piece = new Piece(Team, shape, tile);
                     piecesOnBoard.Add(piece);
+                    piece.OnRemove += RemovePiece;
                     PieceBuffer += PieceBuffer - 1;
                 }
             }
