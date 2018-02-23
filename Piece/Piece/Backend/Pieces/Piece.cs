@@ -17,12 +17,12 @@ namespace Ludoop.Backend
         /// </summary>
         /// <param name="type">the type of piece works along with the current team of the piece as an ID</param>
         /// <param name="tile">defines the current tile the piece is on</param>
-        public Piece(PlayerTeam team, PieceType type, Tile tile, Actor actor)
+        public Piece(PlayerTeam team, PieceType type, Tile tile)
         {
             this.Type = type;
             this.CurrentTile = tile;
             this.Team = team;
-            this.Actor = actor;
+            this.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(), this);
         }
 
         public PlayerTeam Team { get; set; }

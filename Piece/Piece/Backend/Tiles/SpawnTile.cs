@@ -16,9 +16,10 @@ namespace Ludoop.Backend.Tiles
         /// <param name="map">the map the tile is on</param>
         /// <param name="index">the index the tile is on</param>
         /// <param name="team">the team the spawntile is assigned to</param>
-        public SpawnTile(Map map, int index, PlayerTeam team, Actor actor) : base(TileType.SPAWNPOINT, map, index, actor)
+        public SpawnTile(Map map, int index, PlayerTeam team) : base(TileType.SPAWNPOINT, map, index)
         {
             this.Team = team;
+            this.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), this);
         }
 
         public override Actor Actor { get; set; }
