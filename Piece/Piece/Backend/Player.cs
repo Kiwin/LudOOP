@@ -1,5 +1,6 @@
 ﻿using Ludoop.Backend;
 using Ludoop.Backend.Tiles;
+using Ludoop.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,11 +67,6 @@ namespace Ludoop.Backend
 
         }
 
-        public List<Piece> GetPieces()
-        {
-            return piecesOnBoard;
-        }
-
         public bool HasPieceOnBoard(PieceType shape)
         {
             if (!piecesOnBoard.Any(piece => piece.Type == shape))
@@ -101,11 +97,17 @@ namespace Ludoop.Backend
                 if (!piecesOnBoard.Any(piece => piece.Type == shape))
                 {
                     // TODO: Currently not implemented due to Piece being abstract and needs subclasses
-                    Piece piece = new Piece(Team, shape, tile);
+                    Piece piece = new Piece(Team, shape, tile, Actor.NullActor);
+                    piece.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(),piece);
                     piecesOnBoard.Add(piece);
                     PieceBuffer += PieceBuffer - 1;
                 }
             }
+        }
+
+        public Piece[] GetPieces()
+        {
+            return this.piecesOnBoard.ToArray();
         }
     }
 }

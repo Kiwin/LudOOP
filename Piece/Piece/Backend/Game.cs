@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ludoop.Backend.Tiles;
+using Ludoop.View;
 
 namespace Ludoop.Backend
 {
@@ -13,9 +14,10 @@ namespace Ludoop.Backend
         private Player CurrentPlayer;
         private Dice Die;
         private RuleSet rules;
+        private static ConsoleActorMatrix matrix = new ConsoleActorMatrix();
 
         /// <summary>
-        /// Initializes the Game Class
+        /// Class Constructor.
         /// </summary>
         /// <param name="players">Defines the Player classes to be added</param>
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
@@ -38,8 +40,14 @@ namespace Ludoop.Backend
 
             if (currentPlayerIndex >= ResourceManager.GetPlayers().Count)
             {
+<<<<<<< HEAD
                 CurrentPlayer = ResourceManager.GetPlayers().First();
             } else
+=======
+                CurrentPlayer = resources.GetPlayers().First();
+            }
+            else
+>>>>>>> caf0a121c13f77368432e6fe1ca9cc83dcd3c441
             {
                 CurrentPlayer = ResourceManager.GetPlayers()[currentPlayerIndex + 1];
             }
@@ -66,8 +74,10 @@ namespace Ludoop.Backend
             CurrentPlayer = luckiestPlayer;
         }
 
-        public static ConsoleColor GetTeamColor(PlayerTeam team) {
-            switch (team) {
+        public static ConsoleColor GetTeamColor(PlayerTeam team)
+        {
+            switch (team)
+            {
                 case PlayerTeam.BLUE: { return ConsoleColor.Blue; }
                 case PlayerTeam.GREEN: { return ConsoleColor.Green; }
                 case PlayerTeam.RED: { return ConsoleColor.Red; }
@@ -79,13 +89,18 @@ namespace Ludoop.Backend
         //TODO: Check if pieces are already on tile and rules applying to such 
         public void MovePiece(Piece piece, int steps)
         {
-            
+
         }
 
         public void CreatePiece(Player player, PieceType type)
         {
+<<<<<<< HEAD
             Tile[] tilesOfType = ResourceManager.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
             Tile matchingTile = ResourceManager.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
+=======
+            Tile[] tilesOfType = resources.Board.Maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = resources.Board.Maps[0].GetFirstTileOfTeam(tilesOfType, player.Team);
+>>>>>>> caf0a121c13f77368432e6fe1ca9cc83dcd3c441
 
             player.SpawnPiece(matchingTile);
             Piece latestPiece = player.GetPieces().Last();
@@ -96,9 +111,13 @@ namespace Ludoop.Backend
         {
             rules.PieceOnTile(newTile, piece);
         }
+
+        public static ConsoleActorMatrix GetConsoleActorMatrix() {
+            return matrix;
+        }
     }
 }
 
-                
+
 
 

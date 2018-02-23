@@ -11,14 +11,16 @@ namespace Ludoop.View
         /// <summary>
         /// Class Constructor.
         /// </summary>
-        /// <param name="x">Actor's X Tile position.</param>
-        /// <param name="y">Actor's Y Tile position.</param>
-        /// <param name="tileWidth">Width of a tile.</param>
-        /// <param name="tileHeight">Height of a tile.</param>
-        public ConsoleActor(int x = 0, int y = 0, int tileWidth = 1, int tileHeight = 1, int tileSpacingX = 0, int tileSpacingY = 0) : base(x, y, tileWidth, tileHeight)
+        /// <param name="row">Row position in the console.</param>
+        /// <param name="column">Column position in the console.</param>
+        /// <param name="width">Amount of rows to fill.</param>
+        /// <param name="height">Amount of columns to fill.</param>
+        public ConsoleActor(ConsoleActorMatrix matrix, int row = 0, int column = 0, int width = 1, int height = 1) : base(row, column, width, height)
         {
-
+            this.Matrix = matrix;
         }
+
+        public ConsoleActorMatrix Matrix { get; set; }
 
         /// <summary>
         /// Method for drawing actor.
@@ -29,14 +31,14 @@ namespace Ludoop.View
         /// <param name="h">Amount of symbols to draw vertically.</param>
         public override void Draw(float x, float y, float w, float h)
         {
-            for (int i = 0; i < (int)w; i++)
+            for (int i = 0; i < (int)(w * Matrix.RowScale); i++)
             {
                 Console.ForegroundColor = GetForegroundColor();
                 Console.BackgroundColor = GetBackgroundColor();
 
-                for (int j = 0; j < (int)h; j++)
+                for (int j = 0; j < (int)(h * Matrix.ColumnScale); j++)
                 {
-                    Console.SetCursorPosition((int)(x * w + i), (int)(y * h + j));
+                    Console.SetCursorPosition((int)(Matrix.RowOffset + x * (w + Matrix.RowSpacing) + i), (int)(Matrix.ColumnOffset + y * (h + Matrix.ColumnSpacing) + j));
                     Console.Write(GetSymbol());
                 }
             }

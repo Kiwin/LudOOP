@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ludoop.View
 {
-    public class DrawableList : List<IDraw>
+    public class DrawableList : List<IAct>
     {
 
         public DrawableList() {
@@ -15,7 +15,7 @@ namespace Ludoop.View
         /// Method for drawing all actors in ActorList.
         /// </summary>
         public void DrawAll() {
-            foreach(IDraw drawableItem in this) {
+            foreach(IAct drawableItem in this) {
                 drawableItem.Actor.Draw();
             }
         }

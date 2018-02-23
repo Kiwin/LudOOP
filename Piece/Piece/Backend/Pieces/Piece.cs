@@ -5,17 +5,19 @@ using System;
 
 namespace Ludoop.Backend
 {
-    public enum PieceType { CIRCLE, SQUARE, TRIANGLE, PENTAGON };
-
-    public class Piece : ITeam, IDraw
+    public class Piece : ITeam, IAct
     {
 
         public Tile CurrentTile { get; set; }
         public Tile LastTile { get; set; }
+<<<<<<< HEAD
         public PieceType Type;
         public bool IsFinished = false;
         public PlayerTeam Team { get; set; }
         public Actor Actor { get; set; }
+=======
+        public PieceType Type { get; set; }
+>>>>>>> caf0a121c13f77368432e6fe1ca9cc83dcd3c441
 
         /// <summary>
         /// Constructor for the piece class
@@ -27,7 +29,7 @@ namespace Ludoop.Backend
             this.Type = type;
             this.CurrentTile = tile;
             this.Team = team;
-            this.Actor = new ConsolePieceActor(this);
+            this.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(), this);
         }
 
         /// <summary>

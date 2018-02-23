@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Ludoop.Backend.Tiles;
+using Ludoop.View;
 
 namespace Ludoop.Backend
 {
@@ -29,7 +30,9 @@ namespace Ludoop.Backend
             this.Name = "Map";
             for (int i = 0; i < Tiles.Length; i++)
             {
-                Tiles[i] = new DefaultTile(this, i);
+                Tile newTile = new DefaultTile(this, i);
+                newTile.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), newTile);
+                Tiles[i] = newTile;
             }
         }
 

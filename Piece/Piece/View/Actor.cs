@@ -7,7 +7,7 @@ namespace Ludoop.View
     /// <summary>
     /// Abstract class representing a drawable object.
     /// </summary>
-    public abstract class Actor
+    public abstract class Actor : IDraw
     {
         /// <summary>
         /// Class Constructor.
@@ -24,7 +24,7 @@ namespace Ludoop.View
         }
 
         public float X, Y, Width, Height;
-
+        public readonly static NullActor NullActor = new NullActor();
         /// <summary>
         /// Method for drawing actor using it's own members.
         /// </summary>
@@ -37,5 +37,12 @@ namespace Ludoop.View
         /// Method for drawing actor.
         /// </summary>
         public abstract void Draw(float x, float y, float w, float h);
+    }
+
+    public class NullActor : Actor
+    {
+        public override void Draw(float x, float y, float w, float h)
+        {
+        }
     }
 }
