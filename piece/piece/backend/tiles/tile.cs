@@ -22,12 +22,12 @@ namespace Ludoop.Backend.Tiles
         /// <param name="type">the type of the tile defined in ITile</param>
         /// <param name="map">defines the Map the tile is on</param>
         /// <param name="index">Defines the index the tile is on</param>
-        public Tile(TileType type, Map map, int index, Actor actor)
+        public Tile(TileType type, Map map, int index)
         {
             this.TYPE = type;
             this.Map = map;
             this.Index = index;
-            this.Actor = actor;
+            this.Actor = Actor.NullActor;
             this.NextTile = this;
             this.PrevTile = this;
         }
