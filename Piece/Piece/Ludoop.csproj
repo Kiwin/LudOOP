@@ -6,13 +6,11 @@
 
   <ItemGroup>
     <Compile Remove="Backend\Kiwin\**" />
+    <Compile Remove="bin\**" />
     <EmbeddedResource Remove="Backend\Kiwin\**" />
+    <EmbeddedResource Remove="bin\**" />
     <None Remove="Backend\Kiwin\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="bin\Debug\netstandard2.0\" />
-    <Folder Include="bin\Release\netstandard2.0\" />
+    <None Remove="bin\**" />
   </ItemGroup>
 
 </Project>
