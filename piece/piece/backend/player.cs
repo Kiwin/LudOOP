@@ -97,7 +97,7 @@ namespace Ludoop.Backend
                 if (!piecesOnBoard.Any(piece => piece.Type == shape))
                 {
                     // TODO: Currently not implemented due to Piece being abstract and needs subclasses
-                    Piece piece = new Piece(Team, shape, tile, Actor.NullActor);
+                    Piece piece = new Piece(Team, shape, tile);
                     piece.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(),piece);
                     piecesOnBoard.Add(piece);
                     PieceBuffer += PieceBuffer - 1;

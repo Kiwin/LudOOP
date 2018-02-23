@@ -38,4 +38,11 @@ namespace Ludoop.View
         /// </summary>
         public abstract void Draw(float x, float y, float w, float h);
     }
+
+    public class NullActor : Actor
+    {
+        public override void Draw(float x, float y, float w, float h)
+        {
+        }
+    }
 }

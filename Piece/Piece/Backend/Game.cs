@@ -15,7 +15,7 @@ namespace Ludoop.Backend
         private Player CurrentPlayer;
         private Dice Die;
         private RuleSet rules;
-        private static ConsoleActorMatrix matrix;
+        private static ConsoleActorMatrix matrix = new ConsoleActorMatrix();
 
         /// <summary>
         /// Class Constructor.
@@ -24,7 +24,6 @@ namespace Ludoop.Backend
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
         public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
         {
-            matrix = new ConsoleActorMatrix();
             for (int i = 0; i <= players.Length; i++)
             {
                 resources.AddPlayer(players[i]);

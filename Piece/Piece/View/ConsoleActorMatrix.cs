@@ -7,14 +7,19 @@ namespace Ludoop.View
     public class ConsoleActorMatrix
     {
 
-        public ConsoleActorMatrix() {
-            RowOffset = 0;
-            ColumnOffset = 0;
-            RowSpacing = 0;
-            ColumnSpacing = 0;
+        public ConsoleActorMatrix(int rowOffset = 0, int columnOffset = 0, int rowSpacing = 0, int columnSpacing = 0, int rowScale = 1, int columnScale = 1)
+        {
+            RowOffset = rowOffset;
+            ColumnOffset = columnOffset;
+            RowSpacing = rowSpacing;
+            ColumnSpacing = columnSpacing;
+            RowScale = rowScale;
+            ColumnScale = columnScale;
         }
 
-        public int RowOffset, ColumnOffset, RowSpacing, ColumnSpacing;
+        public int RowOffset, ColumnOffset;
+        public int RowSpacing, ColumnSpacing;
+        public int RowScale, ColumnScale;
 
     }
 }

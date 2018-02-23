@@ -30,7 +30,7 @@ namespace Ludoop.Backend
             this.Name = "Map";
             for (int i = 0; i < Tiles.Length; i++)
             {
-                Tile newTile = new DefaultTile(this, i, Actor.NullActor);
+                Tile newTile = new DefaultTile(this, i);
                 newTile.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), newTile);
                 Tiles[i] = newTile;
             }

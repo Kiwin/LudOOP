@@ -56,13 +56,13 @@ namespace Ludoop.Backend
             {
                 int idx = i * ((int)(MapSectionSize.SHARED) / 4);
 
-                Tile newTile = new ExitTile(sharedMap, idx, submaps[i].FirstTile, (PlayerTeam)(i), Actor.NullActor);
+                Tile newTile = new ExitTile(sharedMap, idx, submaps[i].FirstTile, (PlayerTeam)(i));
                 sharedMap.SetTile(idx, newTile); //Create exit tiles.
 
-                newTile = new SpawnTile(sharedMap, idx + 2, (PlayerTeam)(i), Actor.NullActor);
+                newTile = new SpawnTile(sharedMap, idx + 2, (PlayerTeam)(i));
                 sharedMap.SetTile(idx + 2, newTile); //Create spawn tiles.
 
-                newTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i), Actor.NullActor);
+                newTile = new EndTile(submaps[i], submaps[i].Tiles.Length - 1, (PlayerTeam)(i));
                 submaps[i].LastTile = newTile; //Create end tiles.
             }
 

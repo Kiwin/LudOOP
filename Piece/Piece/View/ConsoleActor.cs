@@ -31,12 +31,12 @@ namespace Ludoop.View
         /// <param name="h">Amount of symbols to draw vertically.</param>
         public override void Draw(float x, float y, float w, float h)
         {
-            for (int i = 0; i < (int)w; i++)
+            for (int i = 0; i < (int)(w * Matrix.RowScale); i++)
             {
                 Console.ForegroundColor = GetForegroundColor();
                 Console.BackgroundColor = GetBackgroundColor();
 
-                for (int j = 0; j < (int)h; j++)
+                for (int j = 0; j < (int)(h * Matrix.ColumnScale); j++)
                 {
                     Console.SetCursorPosition((int)(Matrix.RowOffset + x * (w + Matrix.RowSpacing) + i), (int)(Matrix.ColumnOffset + y * (h + Matrix.ColumnSpacing) + j));
                     Console.Write(GetSymbol());
