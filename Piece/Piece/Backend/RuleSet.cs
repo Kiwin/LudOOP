@@ -9,10 +9,10 @@ namespace Ludoop.Backend
     public class RuleSet
     {
         public enum RuleIdentifier { SAFE, JUMP, RETURN, SPAWN};
-        private GameBoard board;
+        private LudoGameBoard board;
 
 
-        public RuleSet(GameBoard board)
+        public RuleSet(LudoGameBoard board)
         {
             this.board = board;
             

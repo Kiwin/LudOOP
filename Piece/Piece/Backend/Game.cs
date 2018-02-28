@@ -30,7 +30,7 @@ namespace Ludoop.Backend
 
             Die = new Dice(sizeOfDie);
             ResourceManager.Initialize(piecesPerPlayer);
-            ResourceManager.Board = new GameBoard();
+            ResourceManager.Board = new LudoGameBoard();
             this.rules = rules;
         }
 

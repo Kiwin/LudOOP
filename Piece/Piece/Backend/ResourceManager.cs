@@ -11,10 +11,10 @@ namespace Ludoop.Backend
         /// <summary>
         /// Contains the Ludo Board class
         /// </summary>
-        private static GameBoard board;
+        private static LudoGameBoard board;
 
         
-        public static GameBoard Board
+        public static LudoGameBoard Board
         {
             get { return board; }
             set { board = value; }
