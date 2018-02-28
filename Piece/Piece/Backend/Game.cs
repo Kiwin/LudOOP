@@ -40,14 +40,8 @@ namespace Ludoop.Backend
 
             if (currentPlayerIndex >= ResourceManager.GetPlayers().Count)
             {
-<<<<<<< HEAD
                 CurrentPlayer = ResourceManager.GetPlayers().First();
             } else
-=======
-                CurrentPlayer = resources.GetPlayers().First();
-            }
-            else
->>>>>>> caf0a121c13f77368432e6fe1ca9cc83dcd3c441
             {
                 CurrentPlayer = ResourceManager.GetPlayers()[currentPlayerIndex + 1];
             }
@@ -94,14 +88,8 @@ namespace Ludoop.Backend
 
         public void CreatePiece(Player player, PieceType type)
         {
-<<<<<<< HEAD
-            Tile[] tilesOfType = ResourceManager.Board.maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
-            Tile matchingTile = ResourceManager.Board.maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
-=======
-            Tile[] tilesOfType = resources.Board.Maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
-            Tile matchingTile = resources.Board.Maps[0].GetFirstTileOfTeam(tilesOfType, player.Team);
->>>>>>> caf0a121c13f77368432e6fe1ca9cc83dcd3c441
-
+            Tile[] tilesOfType = ResourceManager.Board.Maps[0].GetNextTilesOfType(Tiles.TileType.SPAWNPOINT);
+            Tile matchingTile = ResourceManager.Board.Maps[0].GetFirstTileOfTeam(tilesOfType ,player.Team);
             player.SpawnPiece(matchingTile);
             Piece latestPiece = player.GetPieces().Last();
             latestPiece.OnMove += Piece_OnMove;

@@ -104,7 +104,7 @@ namespace Ludoop.Backend
                             if (piece.Team == ((ExitTile)tile).Team)
                             {
                                 //gets next exit tile
-                                Tile nextstar = ResourceManager.Board.maps[0].Tiles.Where(t => t.TYPE == TileType.STAR).Where(t => tile.Index < t.Index).First();
+                                Tile nextstar = ResourceManager.Board.Maps[0].Tiles.Where(t => t.TYPE == TileType.STAR).Where(t => tile.Index < t.Index).First();
 
                                 piece.WarpTo(nextstar);
 
@@ -136,7 +136,7 @@ namespace Ludoop.Backend
                             if (piece.Team == ((ExitTile)tile).Team)
                             {
                                 //gets next exit tile
-                                Tile nextstar = ResourceManager.Board.maps[0].Tiles.Where(t => t.TYPE == TileType.STAR).Where(t => tile.Index < t.Index).First();
+                                Tile nextstar = ResourceManager.Board.Maps[0].Tiles.Where(t => t.TYPE == TileType.STAR).Where(t => tile.Index < t.Index).First();
 
                                 piece.WarpTo(nextstar);
 
@@ -211,7 +211,7 @@ namespace Ludoop.Backend
                                 onSameTilePiecePlayer.PieceBuffer++;
                             }
                             //gets next exit tile
-                            Tile nextexit = ResourceManager.Board.maps[0].Tiles.Where(t => t.TYPE == TileType.EXIT).Where(t => tile.Index < t.Index).First();
+                            Tile nextexit = ResourceManager.Board.Maps[0].Tiles.Where(t => t.TYPE == TileType.EXIT).Where(t => tile.Index < t.Index).First();
 
                             piece.WarpTo(nextexit);
 
@@ -240,7 +240,7 @@ namespace Ludoop.Backend
                         }
                         else {
                             //gets next exit tile
-                            Tile nextexit = ResourceManager.Board.maps[0].Tiles.Where(t => t.TYPE == TileType.EXIT).Where(t => tile.Index < t.Index).First();
+                            Tile nextexit = ResourceManager.Board.Maps[0].Tiles.Where(t => t.TYPE == TileType.EXIT).Where(t => tile.Index < t.Index).First();
 
                             piece.WarpTo(nextexit);
 
