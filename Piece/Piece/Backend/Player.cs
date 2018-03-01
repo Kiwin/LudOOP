@@ -24,8 +24,6 @@ namespace Ludoop.Backend
             this.Team = team;
         }
 
-        public int PiecesInEnd = 0;
-
         /// <summary>
         /// Container for the name of the player
         /// </summary>
