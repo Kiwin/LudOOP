@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Ludoop.View
 {
-    public class ConsoleActorMatrix
+    public class ConsoleRenderConfig
     {
-
-        public ConsoleActorMatrix(int rowOffset = 0, int columnOffset = 0, int rowSpacing = 0, int columnSpacing = 0, int rowScale = 1, int columnScale = 1)
+        public ConsoleRenderConfig(int rowOffset = 0, int columnOffset = 0, int rowSpacing = 0, int columnSpacing = 0, int rowScale = 1, int columnScale = 1)
         {
             RowOffset = rowOffset;
             ColumnOffset = columnOffset;

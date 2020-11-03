@@ -1,5 +1,8 @@
 ﻿using System;
 using Ludoop;
+using Ludoop.Backend;
+using Ludoop.Backend.MapLayouts;
+using Ludoop.Backend.Tiles;
 
 namespace ConsoleTest
 {
@@ -7,12 +10,20 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            Piece piece = new Piece(Ludoop.Backend.PlayerTeam.BLUE, PieceShape.CIRCLE, Tile);
+            var players = new Player[] { 
+                new Player("P1", PlayerTeam.GREEN),
+                new Player("P2", PlayerTeam.RED),
+            };
 
-            piece.Move(4);
+            var gameBoard = new LudoGameBoard();
+            var ruleSet = new RuleSet(gameBoard);
 
-            Console.WriteLine(string.Format("X: {0} {1}Y: {2}", piece.Position.X, Environment.NewLine, piece.Position.Y));
-            Console.ReadLine();
+            Game game = new Game(players, 4, 6, ruleSet);
+
+            var consoleRenderConfig = Game.GetConsoleRenderConfig();
+            gameBoard.Draw();
+
+
         }
     }
 }

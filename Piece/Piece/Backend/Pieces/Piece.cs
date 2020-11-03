@@ -24,7 +24,7 @@ namespace Ludoop.Backend
             this.Type = type;
             this.CurrentTile = tile;
             this.Team = team;
-            this.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(), this);
+            this.Actor = new ConsolePieceActor(Game.GetConsoleRenderConfig(), this);
         }
 
         /// <summary>

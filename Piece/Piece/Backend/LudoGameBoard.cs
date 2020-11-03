@@ -13,7 +13,7 @@ namespace Ludoop.Backend
     public enum MapSectionSize { SHARED = 52, RED = 4, BLUE = 4, YELLOW = 4, GREEN = 4 };
     public enum MapSectionLoop { SHARED = 1, RED = 0, BLUE = 0, YELLOW = 0, GREEN = 0 };
 
-    public class LudoGameBoard : IDraw
+    public class LudoGameBoard : IDraw2D
     {
         /// <summary>
         /// Array of all gameboard maps.
@@ -77,7 +77,7 @@ namespace Ludoop.Backend
             {
                 foreach (Tile tile in map.Tiles)
                 {
-                    tile.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), tile);
+                    tile.Actor = new ConsoleTileActor(Game.GetConsoleRenderConfig(), tile);
                 }
             }
         }
@@ -116,12 +116,13 @@ namespace Ludoop.Backend
         /// Method for drawing all gameboard maps.
         /// </summary>
 
-        public void Draw(float x, float y, float w, float h)
+        public void Draw(float x = 0, float y = 0, float w = 20, float h = 20)
         {
-            Game.GetConsoleActorMatrix().RowOffset = (int)x;
-            Game.GetConsoleActorMatrix().ColumnScale = (int)y;
-            Game.GetConsoleActorMatrix().RowScale = (int)w;
-            Game.GetConsoleActorMatrix().ColumnScale = (int)h;
+            var renderConfig = Game.GetConsoleRenderConfig();
+            renderConfig.RowOffset = (int)x;
+            renderConfig.ColumnScale = (int)y;
+            renderConfig.RowScale = (int)w;
+            renderConfig.ColumnScale = (int)h;
 
             foreach (Map map in Maps)
             {

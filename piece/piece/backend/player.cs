@@ -89,6 +89,8 @@ namespace Ludoop.Backend
             set { this.pieceBuffer = value; }
         }
 
+        public int PiecesInEnd { get; internal set; }
+
         /// <summary>
         /// Spawns a piece on an arbitrary tile in the case of Ludo on the starting tile for the player
         /// </summary>
@@ -103,7 +105,7 @@ namespace Ludoop.Backend
                 {
                     // TODO: Currently not implemented due to Piece being abstract and needs subclasses
                     Piece piece = new Piece(Team, shape, tile);
-                    piece.Actor = new ConsolePieceActor(Game.GetConsoleActorMatrix(),piece);
+                    piece.Actor = new ConsolePieceActor(Game.GetConsoleRenderConfig(),piece);
                     piecesOnBoard.Add(piece);
                     PieceBuffer += PieceBuffer - 1;
                 }

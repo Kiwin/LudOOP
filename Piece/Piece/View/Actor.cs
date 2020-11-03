@@ -7,7 +7,7 @@ namespace Ludoop.View
     /// <summary>
     /// Abstract class representing a drawable object.
     /// </summary>
-    public abstract class Actor : IDraw
+    public abstract class Actor : IDraw2D
     {
         /// <summary>
         /// Class Constructor.

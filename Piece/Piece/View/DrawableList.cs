@@ -6,7 +6,6 @@ namespace Ludoop.View
 {
     public class DrawableList : List<IAct>
     {
-
         public DrawableList() {
 
         }

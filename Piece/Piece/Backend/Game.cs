@@ -11,10 +11,10 @@ namespace Ludoop.Backend
     // Game Implements general game flow and handles how the game works INCOMPLETE
     public class Game
     {
-        private Player CurrentPlayer;
-        private Dice Die;
-        private RuleSet rules;
-        private static ConsoleActorMatrix matrix = new ConsoleActorMatrix();
+        private Player currentPlayer;
+        private readonly Dice die;
+        private readonly RuleSet rules;
+        private static readonly ConsoleRenderConfig renderConfig = new ConsoleRenderConfig();
 
         /// <summary>
         /// Class Constructor.
@@ -28,7 +28,7 @@ namespace Ludoop.Backend
                 ResourceManager.AddPlayer(players[i]);
             }
 
-            Die = new Dice(sizeOfDie);
+            die = new Dice(sizeOfDie);
             ResourceManager.Initialize(piecesPerPlayer);
             ResourceManager.Board = new LudoGameBoard();
             this.rules = rules;
@@ -36,36 +36,36 @@ namespace Ludoop.Backend
 
         public void NextTurn()
         {
-            int currentPlayerIndex = ResourceManager.GetPlayers().IndexOf(CurrentPlayer);
+            int currentPlayerIndex = ResourceManager.GetPlayers().IndexOf(currentPlayer);
 
             if (currentPlayerIndex >= ResourceManager.GetPlayers().Count)
             {
-                CurrentPlayer = ResourceManager.GetPlayers().First();
+                currentPlayer = ResourceManager.GetPlayers().First();
             } else
             {
-                CurrentPlayer = ResourceManager.GetPlayers()[currentPlayerIndex + 1];
+                currentPlayer = ResourceManager.GetPlayers()[currentPlayerIndex + 1];
             }
         }
 
         public void DetermineFirstPlayer()
         {
-            int LargestValue = 0;
+            int largestValue = 0;
             Player luckiestPlayer = ResourceManager.GetPlayers().First();
 
             for (int i = 0; i < ResourceManager.GetPlayers().Count; i++)
             {
-                Player curPlayer = ResourceManager.GetPlayers()[i];
+                Player currentPlayer = ResourceManager.GetPlayers()[i];
 
-                int roll = Die.Roll();
+                int roll = die.Roll();
 
-                if (roll > LargestValue)
+                if (roll > largestValue)
                 {
-                    LargestValue = roll;
-                    luckiestPlayer = curPlayer;
+                    largestValue = roll;
+                    luckiestPlayer = currentPlayer;
                 }
             }
 
-            CurrentPlayer = luckiestPlayer;
+            currentPlayer = luckiestPlayer;
         }
 
         public static ConsoleColor GetTeamColor(PlayerTeam team)
@@ -100,8 +100,8 @@ namespace Ludoop.Backend
             rules.PieceOnTile(newTile, piece);
         }
 
-        public static ConsoleActorMatrix GetConsoleActorMatrix() {
-            return matrix;
+        public static ConsoleRenderConfig GetConsoleRenderConfig() {
+            return renderConfig;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Ludoop.View
         /// Class Constructor.
         /// </summary>
         /// <param name="piece">Piece of actor.</param>
-        public ConsolePieceActor(ConsoleActorMatrix matrix, Piece piece, int x = 0, int y = 0, int w = 1, int h = 1) : base(matrix, x, y, w, h)
+        public ConsolePieceActor(ConsoleRenderConfig renderConfig, Piece piece, int x = 0, int y = 0, int w = 1, int h = 1) : base(renderConfig, x, y, w, h)
         {
             this.piece = piece;
         }

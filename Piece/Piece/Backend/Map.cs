@@ -31,7 +31,7 @@ namespace Ludoop.Backend
             for (int i = 0; i < Tiles.Length; i++)
             {
                 Tile newTile = new DefaultTile(this, i);
-                newTile.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(), newTile);
+                newTile.Actor = new ConsoleTileActor(Game.GetConsoleRenderConfig(), newTile);
                 Tiles[i] = newTile;
             }
         }
@@ -107,7 +107,7 @@ namespace Ludoop.Backend
             Tile tile = Tiles[index];
             string strMap = tile.Map.Name;
             string strIdx = tile.Index.ToString();
-            string strType = tile.TYPE.ToString();
+            string strType = tile.Type.ToString();
             string strPos = String.Format("[x:{0},y:{1},w:{2},h:{3}]", tile.Actor.X, tile.Actor.Y, tile.Actor.Width, tile.Actor.Height);
             string strInfo = strMap + ":" + strIdx + ":" + strType + ":" + strPos;
             if (tile is ITeam) //Check if should add Team Info.
@@ -127,7 +127,7 @@ namespace Ludoop.Backend
             List<Tile> tilesOfType = new List<Tile>();
             foreach (Tile tile in this.Tiles)
             {
-                if (tile.TYPE == type)
+                if (tile.Type == type)
                 {
                     tilesOfType.Add(tile);
                 }

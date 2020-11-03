@@ -12,7 +12,7 @@ namespace Ludoop.Backend.Tiles
     {
         public EndTile(Map map, int index, PlayerTeam team) : base(TileType.END, map, index) {
             this.Team = team;
-            this.Actor = new ConsoleTileActor(Game.GetConsoleActorMatrix(),this);
+            this.Actor = new ConsoleTileActor(Game.GetConsoleRenderConfig(),this);
         }
 
         public override Actor Actor { get; set; }

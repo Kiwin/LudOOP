@@ -8,13 +8,13 @@ namespace Ludoop.View
 {
     public class ConsoleTileActor : ConsoleActor
     {
-        private Tile tile;
+        private readonly Tile tile;
 
         /// <summary>
         /// Class Constructor.
         /// </summary>
         /// <param name="tile">Tile of actor.</param>
-        public ConsoleTileActor(ConsoleActorMatrix matrix, Tile tile, int x = 0, int y = 0, int w = 1, int h = 1) : base(matrix, x, y, w, h)
+        public ConsoleTileActor(ConsoleRenderConfig renderConfig, Tile tile, int x = 0, int y = 0, int w = 1, int h = 1) : base(renderConfig, x, y, w, h)
         {
             this.tile = tile;
         }
@@ -25,7 +25,7 @@ namespace Ludoop.View
         /// <returns>Character representing actor.</returns>
         public override char GetSymbol()
         {
-            switch (tile.TYPE)
+            switch (tile.Type)
             {
                 case TileType.DEFAULT:
                     { return (tile.Actor.X + tile.Actor.Y) % 2 == 0 ? '-' : '|'; }
