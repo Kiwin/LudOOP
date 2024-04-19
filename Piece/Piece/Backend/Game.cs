@@ -23,7 +23,7 @@ namespace Ludoop.Backend
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
         public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
         {
-            for (int i = 0; i <= players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 ResourceManager.AddPlayer(players[i]);
             }

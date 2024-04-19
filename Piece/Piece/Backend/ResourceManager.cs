@@ -31,7 +31,7 @@ namespace Ludoop.Backend
         public static void Initialize(int piecesPerPlayer)
         {
             // assigns every players piecebuffer with the correct amount of pieces
-            for (int i = 0; i <= players.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
                 players[i].PieceBuffer = piecesPerPlayer;
             }
@@ -40,7 +40,7 @@ namespace Ludoop.Backend
         /// <summary>
         /// Contains all players in the game
         /// </summary>
-        private static List<Player> players;
+        private static List<Player> players = new List<Player>();
 
         /// <summary>
         /// Gets all the players in the game
