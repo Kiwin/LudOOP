@@ -13,7 +13,7 @@ namespace Ludoop.Backend
     {
         private Player currentPlayer;
         private readonly Dice die;
-        private readonly RuleSet rules;
+        private readonly IRuleSet rules;
         private static readonly ConsoleRenderConfig renderConfig = new ConsoleRenderConfig();
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Ludoop.Backend
         /// </summary>
         /// <param name="players">Defines the Player classes to be added</param>
         /// <param name="piecesPerPlayer"> defines the amount of pieces per player</param>
-        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, RuleSet rules)
+        public Game(Player[] players, int piecesPerPlayer, int sizeOfDie, LudoRuleSet rules)
         {
             for (int i = 0; i < players.Length; i++)
             {

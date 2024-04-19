@@ -22,7 +22,7 @@ namespace ConsoleTest
 			};
 
 				var gameBoard = new LudoGameBoard();
-				var ruleSet = new RuleSet(gameBoard);
+				var ruleSet = new LudoRuleSet();
 
 				Game game = new Game(players, 4, 6, ruleSet);
 
