@@ -60,7 +60,7 @@ namespace Ludoop.Backend.Tiles
         /// <param name="piece">the piece in question</param>
         /// <param name="isForward">is the piece moving forward?</param>
         /// <param name="isLast">Is the current step the last </param>
-        virtual public void onPieceEnter(Piece piece, bool isForward, bool isLast) { }
+        virtual public void OnPieceEnter(Piece piece, bool isForward, bool isLast) { }
         public abstract Actor Actor { get; set; }
     }
 }

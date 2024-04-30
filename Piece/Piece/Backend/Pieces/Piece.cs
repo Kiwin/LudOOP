@@ -49,7 +49,7 @@ namespace Ludoop.Backend
                 CurrentTile.onPieceLeave(this, isMovingForward, isLastStep);
                 if (CurrentTile != LastTile)
                 {
-                    CurrentTile.onPieceEnter(this, isMovingForward, isLastStep);
+                    CurrentTile.OnPieceEnter(this, isMovingForward, isLastStep);
                 }
             }
             OnMove(this, previousTile, CurrentTile);
