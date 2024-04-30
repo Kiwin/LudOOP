@@ -12,26 +12,54 @@ namespace ConsoleTest
 		static void Main(string[] args)
 		{
 			var scale = 1;
+			var camX = 0;
+			var camY = 0;
+
+			var players = new Player[] {
+				new Player("P1", PlayerTeam.GREEN),
+				new Player("P2", PlayerTeam.RED),
+				};
+
+			var gameBoard = new LudoGameBoard();
+			var ruleSet = new LudoRuleSet();
+
+			Game game = new Game(players, 4, 6, ruleSet);
 
 			while (true)
 			{
 
-				var players = new Player[] {
-				new Player("P1", PlayerTeam.GREEN),
-				new Player("P2", PlayerTeam.RED),
-			};
 
-				var gameBoard = new LudoGameBoard();
-				var ruleSet = new LudoRuleSet();
+				Console.Clear();
+				gameBoard.Draw();
 
-				Game game = new Game(players, 4, 6, ruleSet);
+				switch (Console.ReadKey().Key)
+				{
+					case ConsoleKey.Add:
+						scale++;
+						break;
+					case ConsoleKey.Subtract:
+						scale--;
+						break;
+					case ConsoleKey.NumPad6:
+						camX--;
+						break;
+					case ConsoleKey.NumPad4:
+						camX++;
+						break;
+					case ConsoleKey.NumPad8:
+						camY++;
+						break;
+					case ConsoleKey.NumPad2:
+						camY--;
+						break;
+				}
 
-				var consoleRenderConfig = Game.GetConsoleRenderConfig();
-				gameBoard.Draw(0, 0, scale, scale);
-				scale++;
-				Console.ReadKey();
+				var renderConfig = Game.GetConsoleRenderConfig();
+				renderConfig.ColumnScale = scale;
+				renderConfig.RowScale = scale;
+				renderConfig.ColumnOffset = camX;
+				renderConfig.RowOffset = camY;
 			}
-
 		}
 	}
 }

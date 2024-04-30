@@ -25,21 +25,30 @@ namespace Ludoop.View
 		/// <summary>
 		/// Method for drawing actor.
 		/// </summary>
-		/// <param name="x">Tile X position to draw actor at.</param>
-		/// <param name="y">Tile Y position to draw actor at.</param>
+		/// <param name="column">Tile X position to draw actor at.</param>
+		/// <param name="row">Tile Y position to draw actor at.</param>
 		/// <param name="width">Amount of symbols to draw horizontally.</param>
 		/// <param name="height">Amount of symbols to draw vertically.</param>
-		public override void Draw(float x, float y, float width, float height)
+		public override void Draw(float column, float row, float width, float height)
 		{
-			for (int i = 0; i < (int)(width * RenderConfig.RowScale); i++)
+			int w = (int)(width * RenderConfig.ColumnScale);
+			for (int i = 0; i < w; i++)
 			{
-				Console.ForegroundColor = GetForegroundColor();
-				Console.BackgroundColor = GetBackgroundColor();
+				float x = i + column * RenderConfig.ColumnScale;
+				int left = (int)(RenderConfig.ColumnOffset + x);
+				if (left < 0) continue;
+				if (left >= Console.BufferWidth) break;
 
-				for (int j = 0; j < (int)(height * RenderConfig.ColumnScale); j++)
+				int h = (int)(height * RenderConfig.RowScale);
+				for (int j = 0; j < h; j++)
 				{
-					int left = (int)(RenderConfig.RowOffset + x * (width + RenderConfig.RowSpacing) + i);
-					int top = (int)(RenderConfig.ColumnOffset + (y * (height + RenderConfig.ColumnSpacing)) + j);
+					float y = j + row * RenderConfig.RowScale;
+					int top = (int)(RenderConfig.RowOffset + y);
+					if (top < 0) continue;
+					if (top >= Console.BufferHeight) break;
+
+					Console.ForegroundColor = GetForegroundColor();
+					Console.BackgroundColor = GetBackgroundColor();
 					Console.SetCursorPosition(left, top);
 					Console.Write(GetSymbol());
 				}
